@@ -10,3 +10,12 @@ class formularioProducto(forms.Form):
 
     class Meta:
             model = Productos
+
+            
+class modificarProductoForm(forms.Form):
+    nombre = forms.CharField(required=False)
+    precio = forms.IntegerField(required=True)
+    cantidad = forms.IntegerField(required=True)
+    descripcion = forms.CharField(required=True, widget=forms.Textarea)
+    img= forms.CharField(max_length=100)
+     
