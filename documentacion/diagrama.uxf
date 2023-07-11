@@ -1,0 +1,33 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>120</x><y>180</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Widia&gt;&gt;
+--
+-widiaId: int
+-cantidad: int
+--
++setCantidad(cantidad)
++getCantidad()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>380</x><y>180</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Blister&gt;&gt;
+--
+-blisterId: int
+-cantidad: int
+--
++setCantidad(cantidad)
++getCantidad()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>120</x><y>320</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Mango&gt;&gt;
+--
+-mangoId: int
+-cantidad: int
+--
++setCantidad(cantidad)
++getCantidad()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>380</x><y>320</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Carton&gt;&gt;
+--
+-cartonId: int
+-cantidad: int
+--
++setCantidad(cantidad)
++getCantidad()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>40</y><w>210</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Produccion&gt;&gt;
+--
+-produccionId:int
+--
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
