@@ -43,5 +43,16 @@
                     <input type="file" id="imagen" name="imagen" class="form-control" />
                     </div>
                 </div>
+                {% if request.user.is_superuser %}
+
+                <div class="campos_forms">
+                  <input type="hidden" name="super" value="True"/>
+                  <input class="boton_enviar btn btn-outline-secondary" type="submit" value="Confirmar"  id="btn_registrar"/>
+                </div>
+              {% endif %}
+            </form>
+        </div>
+    </div>
+  </div>
 {% endblock %}
 

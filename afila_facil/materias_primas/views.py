@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Productos
+from .forms import modificarProductoForm
 
 def nuevo_producto(request):
     if request.POST:
@@ -18,3 +19,9 @@ def mostrar_producto(request):
     productos = Productos.objects.all()
     return render(request, 'productos.html', {'productos': productos, 'mensaje': "No hay Productos"})
 
+
+def eliminarProducto(request, id):
+    Productos.objects.filter(pk=id).delete()
+    mensaje = "Producto eliminado."
+    productos =  Productos.objects.all()
+    return render (request, 'productos.html',{'productos':productos, 'mensaje':mensaje})
