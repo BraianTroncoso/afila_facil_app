@@ -14,7 +14,7 @@ def nuevo_producto(request):
     return render(request, 'altaProducto.html')
 
 
-def mostrar_productos(request):
-    productos = Productos.objects.all()
-    return render(request, 'productos.html', {'productos': servicios, 'mensaje': "No hay Productos"})
+def mostrar_producto(request):
+    producto = Productos.objects.all()
+    return render(request, 'productos.html', {'producto': producto, 'mensaje': "No hay Productos"})
 
