@@ -3,5 +3,5 @@ from materias_primas import views
 
 
 urlpatterns = [
-    path('nuevo_producto/', view=views.nuevo_servicio, name='nuevo_producto'),
+    path('', view=views.mostrar_producto, name='productos')
 ]

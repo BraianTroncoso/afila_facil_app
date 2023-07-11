@@ -15,14 +15,14 @@
             <th>Disponibilidad</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            {% if user.is_superuser %}
+            {% if user.is_superuser%}
             <th>Acciones</th>
             {%endif%}
         </tr>
         </thead>
         <tbody>
 
-        {% for productos in producto %}
+        {% for producto in productos %}
             <tr>
                 <td>
                 <div class="d-flex align-items-center">
@@ -33,7 +33,7 @@
                         class="rounded-circle"
                         />
                     <div class="ms-3">
-                    <p class="fw-bold mb-1 ml-2">{{producto.nombre }}</p>
+                    <p class="fw-bold mb-1 ml-2">{{producto.nombre}}</p>
                     <p class="text-muted mb-0"></p>
                     </div>
                 </div>

@@ -9,12 +9,12 @@ def nuevo_producto(request):
         descripcion = request.POST['descripcion']
         imagen = request.POST['imagen'].get()
 
-        producto = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
-        producto.save()
+        productos = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
+        productos.save()
     return render(request, 'altaProducto.html')
 
 
 def mostrar_producto(request):
-    producto = Productos.objects.all()
-    return render(request, 'productos.html', {'producto': producto, 'mensaje': "No hay Productos"})
+    productos = Productos.objects.all()
+    return render(request, 'productos.html', {'productos': productos, 'mensaje': "No hay Productos"})
 
