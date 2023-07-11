@@ -8,6 +8,6 @@ Proyecto para una pyme que necesita solucionar el problema de control de stock, 
 
 - [Braian Troncoso](https://github.com/BraianTroncoso)
 
-## Técnologias:
+## Tecnologías:
 Python -Django, SQL, Boostrap
 
