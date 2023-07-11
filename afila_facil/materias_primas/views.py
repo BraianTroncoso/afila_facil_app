@@ -5,11 +5,12 @@ def nuevo_producto(request):
     if request.POST:
         nombre = request.POST['nombre']
         precio = request.POST['precio']
+        cantidad = request.POST['cantidad']
         descripcion = request.POST['descripcion']
         imagen = request.POST['imagen'].get()
 
-        servicio = Servicios(nombre=nombre, precio=precio, descripcion=descripcion, imagen=imagen)
-        servicio.save()
-    return render(request, 'altaServicio.html')
+        producto = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
+        producto.save()
+    return render(request, 'altaProducto.html')
 
 
