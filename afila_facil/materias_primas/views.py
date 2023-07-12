@@ -8,9 +8,9 @@ def nuevo_producto(request):
         precio = request.POST['precio']
         cantidad = request.POST['cantidad']
         descripcion = request.POST['descripcion']
-        imagen = request.POST['imagen'].get()
+        imagen = request.POST['imagen']
 
-        productos = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, img=imagen)
+        productos = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
         productos.save()
     return render(request, 'altaProducto.html')
 
