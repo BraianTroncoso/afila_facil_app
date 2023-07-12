@@ -17,7 +17,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'home' %}">
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
         <img
           src="{% static 'img/logo.jpeg' %}"
           height="30"
@@ -28,17 +28,17 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+          <a class="nav-link" href="#">Productos</a>
         </li>
 
         {% if user.is_staff %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'nuevo_servicio' %}">Nuevo Servicio</a>
+          <a class="nav-link" href="#">Nuevo Servicio</a>
         </li>
         {% endif %}
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'acercaDe' %}">Acerca de</a>
+          <a class="nav-link" href="#">Acerca de</a>
         </li>
 
       </ul>
@@ -48,11 +48,11 @@
       {% if user.is_authenticated %}
         {% if user.is_staff %}
           <div class="nav-item">
-            <a class="nav-link mr-5 text-secondary" href="/admin">Panel de administración</a>
+            <a class="nav-link mr-5 text-secondary" href="#">Panel de administración</a>
           </div>
         {% endif %}
         <div class="nav-item">
-          <a class="btn btn-outline-secondary mr-5" href="{% url 'nuevoTurno' %}">Nuevo Turno</a>
+          <a class="btn btn-outline-secondary mr-5" href="#">Nuevo Turno</a>
         </div>
 
         <div class="dropdown">
@@ -92,16 +92,16 @@
             aria-labelledby="dropdownMenuButton"
           >
             <li>
-              <a class="dropdown-item" href="{% url 'perfil' %}">Mi Perfil</a>
+              <a class="dropdown-item" href="#">Mi Perfil</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'turnos' %}">Turnos</a>
+              <a class="dropdown-item" href="#">Turnos</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'servicios' %}">Servicios</a>
+              <a class="dropdown-item" href="#">Servicios</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
+              <a class="dropdown-item" href="#">Salir</a>
             </li>
           </ul>
         </div>
