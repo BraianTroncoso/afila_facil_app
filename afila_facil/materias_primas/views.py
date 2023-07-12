@@ -20,7 +20,7 @@ def mostrar_producto(request):
     return render(request, 'productos.html', {'productos': productos, 'mensaje': "No hay Productos"})
 
 
-def eliminarProducto(request, id):
+def eliminar_producto(request, id):
     Productos.objects.filter(pk=id).delete()
     mensaje = "Producto eliminado."
     productos = Productos.objects.all()
@@ -32,14 +32,14 @@ def mostrarFormularioProducto(request, id):
     return render(request, 'altaProducto.html', {'productos': productos})
     pass
 
-def modificarProducto(request, id):
+def editar_producto(request, id):
     if request.method == 'POST':
             nombre = request.POST['nombre']
             descripcion = request.POST['direccion']
             precio = request.POST['precio']
             cantidad = request.POST['precio']
-            img = request.POST['img']
+            img = request.POST['imagen']
             
-            productos =  Productos(id=id,nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=img)
+            productos =  Productos(id=id,nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
             productos.save()
             return redirect('productos')
