@@ -21,96 +21,25 @@
         <img
           src="{% static 'img/logo.jpeg' %}"
           height="30"
-          alt="Logo barberia"
+          alt="Logo Afila Facil"
           loading="lazy"
         />
       </a>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Productos</a>
-        </li>
-
         {% if user.is_staff %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Nuevo Servicio</a>
+          <a class="nav-link" href="#">Clientes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Produccion</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Nuevo Producto</a>
         </li>
         {% endif %}
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Acerca de</a>
-        </li>
-
       </ul>
     </div>
-
-    <div class="d-flex">
-      {% if user.is_authenticated %}
-        {% if user.is_staff %}
-          <div class="nav-item">
-            <a class="nav-link mr-5 text-secondary" href="#">Panel de administración</a>
-          </div>
-        {% endif %}
-        <div class="nav-item">
-          <a class="btn btn-outline-secondary mr-5" href="#">Nuevo Turno</a>
-        </div>
-
-        <div class="dropdown">
-          <a
-          class="dropdown-toggle text-reset me-3 hidden-arrow" 
-          type="button" id="dropdownMenuButton" 
-          data-toggle="dropdown" 
-          aria-haspopup="true" 
-          aria-expanded="false"
-          href="#"
-          role="button"
-          >
-          {% if user.img != '' %}
-          <img
-            src="{% static user.img %}"
-            class="rounded-circle"
-            height="30px"
-            width="30px"
-            alt="Imagen de perfin Usuario"
-            loading="lazy"
-          />
-          {%else%}
-          <img
-            src="{% static 'img/users/default.jpg' %}"
-            class="rounded-circle"
-            height="30px"
-            width="30px"
-            alt="Imagen de perfin Usuario"
-            loading="lazy"
-          />
-          {% endif %}
-          </a>
-
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            style="left: -180%;" 
-            aria-labelledby="dropdownMenuButton"
-          >
-            <li>
-              <a class="dropdown-item" href="#">Mi Perfil</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Turnos</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Servicios</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Salir</a>
-            </li>
-          </ul>
-        </div>
-      {% else %}
-        <div class="contenedor_link_log d-flex gap-3 mt-3">
-          <a class="btn btn-dark nav-link" href="#">Login</a>
-          <a class="btn btn-light nav-link" href="#">Registrate</a>
-        </div>
-      {%endif%}
     </div>
   </div>
 </nav>
