@@ -1,0 +1,118 @@
+{% load static %} 
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'home' %}">
+        <img
+          src="{% static 'img/logo.jpeg' %}"
+          height="30"
+          alt="Logo barberia"
+          loading="lazy"
+        />
+      </a>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
+        </li>
+
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'nuevo_servicio' %}">Nuevo Servicio</a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'acercaDe' %}">Acerca de</a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="d-flex">
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <div class="nav-item">
+            <a class="nav-link mr-5 text-secondary" href="/admin">Panel de administración</a>
+          </div>
+        {% endif %}
+        <div class="nav-item">
+          <a class="btn btn-outline-secondary mr-5" href="{% url 'nuevoTurno' %}">Nuevo Turno</a>
+        </div>
+
+        <div class="dropdown">
+          <a
+          class="dropdown-toggle text-reset me-3 hidden-arrow" 
+          type="button" id="dropdownMenuButton" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+          href="#"
+          role="button"
+          >
+          {% if user.img != '' %}
+          <img
+            src="{% static user.img %}"
+            class="rounded-circle"
+            height="30px"
+            width="30px"
+            alt="Imagen de perfin Usuario"
+            loading="lazy"
+          />
+          {%else%}
+          <img
+            src="{% static 'img/users/default.jpg' %}"
+            class="rounded-circle"
+            height="30px"
+            width="30px"
+            alt="Imagen de perfin Usuario"
+            loading="lazy"
+          />
+          {% endif %}
+          </a>
+
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            style="left: -180%;" 
+            aria-labelledby="dropdownMenuButton"
+          >
+            <li>
+              <a class="dropdown-item" href="{% url 'perfil' %}">Mi Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'turnos' %}">Turnos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'servicios' %}">Servicios</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
+            </li>
+          </ul>
+        </div>
+      {% else %}
+        <div class="contenedor_link_log d-flex gap-3 mt-3">
+          <a class="btn btn-dark nav-link" href="#">Login</a>
+          <a class="btn btn-light nav-link" href="#">Registrate</a>
+        </div>
+      {%endif%}
+    </div>
+  </div>
+</nav>
+
+{% endblock %}
