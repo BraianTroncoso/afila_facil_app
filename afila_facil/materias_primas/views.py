@@ -27,10 +27,6 @@ def eliminar_producto(request, id):
     return render (request, 'productos.html',{'productos':productos, 'mensaje':mensaje})
 
 
-def mostrarFormularioProducto(request, id):
-    productos = Productos.objects.only(id =id)
-    return render(request, 'altaProducto.html', {'productos': productos})
-    pass
 
 def editar_producto(request, id):
     if request.method == 'POST':
@@ -38,8 +34,14 @@ def editar_producto(request, id):
             descripcion = request.POST['direccion']
             precio = request.POST['precio']
             cantidad = request.POST['precio']
-            img = request.POST['imagen']
+            imagen = request.POST['imagen']
             
             productos =  Productos(id=id,nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
             productos.save()
             return redirect('productos')
+
+
+# def mostrarFormularioProducto(request, id):
+#     productos = Productos.objects.only(id =id)
+#     return render(request, 'altaProducto.html', {'productos': productos})
+#     pass
