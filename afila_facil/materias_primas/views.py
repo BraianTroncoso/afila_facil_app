@@ -45,3 +45,6 @@ def editar_producto(request, id):
 #     productos = Productos.objects.only(id =id)
 #     return render(request, 'altaProducto.html', {'productos': productos})
 #     pass
+
+def clientes(request):
+    return render(request,'clientes.html')
