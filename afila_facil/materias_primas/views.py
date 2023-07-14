@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Productos
-from .forms import modificarProductoForm
+from .forms import FormProducto
 
 def nuevo_producto(request):
     if request.POST:
@@ -29,17 +29,16 @@ def eliminar_producto(request, id):
 
 
 def editar_producto(request, id):
-    if request.method == 'POST':
-            nombre = request.POST['nombre']
-            descripcion = request.POST['direccion']
-            precio = request.POST['precio']
-            cantidad = request.POST['precio']
-            imagen = request.POST['imagen']
-            
-            productos =  Productos(id=id,nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
-            productos.save()
-            return redirect('productos')
-
+     if request.POST:
+        productos = get_object_or_404(Productos.objects.filter(pk=id))
+        nombre = request.POST['nombre']
+        precio = request.POST['precio']
+        cantidad = request.POST['cantidad']
+        descripcion = request.POST['descripcion']
+        imagen = request.POST['imagen']
+        productos = Productos(nombre=nombre, precio=precio, cantidad=cantidad, descripcion=descripcion, imagen=imagen)
+        productos.save()
+        return render(request, 'productos')
 
 # def mostrarFormularioProducto(request, id):
 #     productos = Productos.objects.only(id =id)
