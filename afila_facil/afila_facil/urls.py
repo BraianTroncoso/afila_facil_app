@@ -3,10 +3,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
+    path('', include('materias_primas.urls')),
     path('admin/', admin.site.urls),
-    path('productos/', include('materias_primas.urls'))
 ]
 
 if settings.DEBUG:
