@@ -13,9 +13,4 @@ class Productos(models.Model):
         verbose_name = "Producto"
 
     def __str__(self):
-        return f'''
-            {self.nombre},
-            {self.descripcion},
-            {self.cantidad},
-            {self.precio}        
-        '''    
+        return f"{self.nombre} - ${self.precio}"
