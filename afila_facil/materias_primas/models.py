@@ -6,7 +6,7 @@ class Productos(models.Model):
     descripcion = models.CharField(max_length=200)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
-    imagen = models.ImageField(upload_to='static/img')
+    imagen = models.CharField(max_length=100, blank=True)
 
     class Meta:
         db_table = 'productos'

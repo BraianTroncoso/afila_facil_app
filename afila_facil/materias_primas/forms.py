@@ -6,7 +6,7 @@ class ProductoForm(forms.Form):
     descripcion = forms.CharField(max_length=255, required=True, widget=forms.Textarea)
     precio = forms.IntegerField(required=True)
     cantidad = forms.IntegerField(required=True)
-    imagen= forms.ImageField(required=False)
+    imagen = forms.CharField(max_length=100)
 
     class Meta:
             model = Productos
