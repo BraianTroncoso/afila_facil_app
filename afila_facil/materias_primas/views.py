@@ -57,6 +57,7 @@ def editar_producto(request, id):
             'precio': producto.precio,
             'cantidad': producto.cantidad,
             'descripcion': producto.descripcion,
+            'imagen': producto.imagen
         })
 
     return render(request, 'modificacionProducto.html', {'form': form, 'producto': producto})

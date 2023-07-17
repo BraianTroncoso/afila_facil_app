@@ -6,7 +6,7 @@ class Productos(models.Model):
     descripcion = models.CharField(max_length=200)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
-    imagen = models.CharField(max_length=100, blank=True)
+    imagen = models.CharField(max_length=100)
 
     def get_imagen_url(self):
         if self.imagen:
