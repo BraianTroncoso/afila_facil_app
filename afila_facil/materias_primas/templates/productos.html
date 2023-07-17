@@ -40,13 +40,13 @@
                 <td>{{ producto.cantidad }}</td>
                 {% if user.is_superuser %}
                 <td>
-                    <form action="{% url 'editar_producto' id=producto.id %}" method="post">
+                    <form action="{% url 'editar_producto' id=producto.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-link btn-sm btn-rounded">Editar</button>
+                        <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                     </form>
                     <form action="{% url 'eliminar_producto' producto.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-link btn-sm btn-rounded">Eliminar</button>
+                        <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                     </form>
                 </td>                
                 {%endif%}
