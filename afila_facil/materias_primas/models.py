@@ -8,6 +8,12 @@ class Productos(models.Model):
     cantidad = models.IntegerField()
     imagen = models.CharField(max_length=100, blank=True)
 
+    def get_imagen_url(self):
+        if self.imagen:
+            return f"/static/img/{self.imagen}"
+        else:
+            return "/static/img/afilador.jpeg"
+
     class Meta:
         db_table = 'productos'
         verbose_name = "Producto"

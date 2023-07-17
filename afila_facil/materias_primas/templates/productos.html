@@ -22,8 +22,8 @@
                 <td>
                 <div class="d-flex align-items-center">
                     <img
-                        src="{% static producto.imagen %}"
-                        alt=""
+                        src="{{ producto.get_imagen_url }}"
+                        alt="NO-IMG"
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
