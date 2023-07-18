@@ -1,5 +1,7 @@
 from django.db import models
 
+
+
 # Create your models here.
 class Productos(models.Model):
     nombre = models.CharField(max_length=45)
@@ -7,6 +9,7 @@ class Productos(models.Model):
     precio = models.IntegerField()
     cantidad = models.IntegerField()
     imagen = models.CharField(max_length=100)
+
 
     def get_imagen_url(self):
         if self.imagen:
