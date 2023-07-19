@@ -47,4 +47,20 @@
         </tbody>
     </table>
 </div>
+{% if user.is_superuser %}
+<div class="d-flex flex-column align-items-center">
+     <div class="row mb-4">
+        <div class="form-outline w-100 text-center">
+            <label class="form-label text-center fw-bold mb-1 ml-2" for="cantidad">INGRESE LA CANTIDAD </label>
+            <input type="number" id="cantidad" name="cantidad" class="form-control" />
+        </div>
+    </div>
+<td>
+    <form action="#"  method="post" style="display: inline;" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-sm btn-rounded">AGREGAR A PRODUCCION</button>
+    </form>
+</td>
+{%endif%}
+</div>    
 {% endblock %}
