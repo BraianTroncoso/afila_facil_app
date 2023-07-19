@@ -12,6 +12,7 @@
         </thead>
         {% if produccion%}
         <tbody>
+            {% for produccion in produccion %}
             <tr>
                 <td>
                 <div class="d-flex align-items-center">
@@ -22,16 +23,17 @@
                         class="rounded-circle"
                         />
                     <div class="ms-3">
-                    <p class="fw-bold mb-1 ml-2"></p>
+                    <p class="fw-bold mb-1 ml-2"> </p>
                     <p class="text-muted mb-0"></p>
                     </div>
                 </div>
                 </td>
                 <td>
-                <p class="fw-normal mb-1"></p>
+                <p class="fw-normal mb-1">{{produccion.produccion_cantidad}}</p>
                 </td>
                 <td></td>
             </tr>
+            {%endfor%}
         </tbody>
     </table> 
 </div>
