@@ -8,7 +8,9 @@
             <th>En Produccion</th>
             <th>Cantidad</th>
             <th>Costo total</th>
+            {% if user.is_superuser %}
             <th>Acciones</th>
+            {%endif%}
         </tr>
         </thead>
         {% if produccion%}
@@ -31,12 +33,14 @@
                 <td>
                     <p class="fw-normal mb-1">$ {{produccion.produccion_total}}</p>
                 </td>
+                {% if user.is_superuser %}
                 <td>
                 <form action="{% url 'eliminar_produccion' %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </form>
             </td>
+            {%endif%}
             </tr>
             {%endfor%}
         </tbody>
