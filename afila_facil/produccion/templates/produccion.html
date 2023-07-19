@@ -7,7 +7,7 @@
         <tr>
             <th>En Produccion</th>
             <th>Cantidad</th>
-            <th>Total</th>
+            <th>Costo total</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -29,7 +29,7 @@
                 <p class="fw-normal mb-1">{{produccion.produccion_cantidad}}</p>
                 </td>
                 <td>
-                    <p class="fw-normal mb-1">{{produccion.produccion_total}}</p>
+                    <p class="fw-normal mb-1">$ {{produccion.produccion_total}}</p>
                 </td>
                 <td>
                 <form action="{% url 'eliminar_produccion' %}" method="post" style="display: inline;">
