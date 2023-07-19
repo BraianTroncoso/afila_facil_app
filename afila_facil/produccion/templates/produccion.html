@@ -22,16 +22,14 @@
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
-                    <div class="ms-3">
-                    <p class="fw-bold mb-1 ml-2"> </p>
-                    <p class="text-muted mb-0"></p>
-                    </div>
                 </div>
                 </td>
                 <td>
                 <p class="fw-normal mb-1">{{produccion.produccion_cantidad}}</p>
                 </td>
-                <td></td>
+                <td>
+                    <p class="fw-normal mb-1">{{produccion.produccion_total}}</p>
+                </td>
             </tr>
             {%endfor%}
         </tbody>
