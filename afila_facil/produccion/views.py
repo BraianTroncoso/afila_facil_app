@@ -11,6 +11,9 @@ def mostrar_produccion(request):
 
 def crear_instancia_produccion(request):
     if request.method == 'POST':
+        # produccion = Produccion.objects.create(producto_completo=True)
+        # produccion.save()
+
         cantidad = request.POST.get('cantidad')
 
         if cantidad is not None:
@@ -34,8 +37,6 @@ def crear_instancia_produccion(request):
         return redirect('produccion')
     else:
         return redirect('produccion')
-
-
 
 
 
