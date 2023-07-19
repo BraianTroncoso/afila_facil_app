@@ -3,8 +3,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+
 urlpatterns = [
     path('', include('materias_primas.urls')),
+    path('produccion/', include('produccion.urls')),
     path('admin/', admin.site.urls),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico'))
 ]
