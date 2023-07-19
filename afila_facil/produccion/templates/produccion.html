@@ -32,8 +32,11 @@
                     <p class="fw-normal mb-1">{{produccion.produccion_total}}</p>
                 </td>
                 <td>
+                <form action="{% url 'eliminar_produccion' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
-                </td>
+                </form>
+            </td>
             </tr>
             {%endfor%}
         </tbody>
