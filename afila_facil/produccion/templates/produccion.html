@@ -8,6 +8,7 @@
             <th>En Produccion</th>
             <th>Cantidad</th>
             <th>Total</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         {% if produccion%}
@@ -29,6 +30,9 @@
                 </td>
                 <td>
                     <p class="fw-normal mb-1">{{produccion.produccion_total}}</p>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </td>
             </tr>
             {%endfor%}
