@@ -10,9 +10,9 @@ def mostrar_produccion(request):
 
 def crear_instancia_produccion(request):
     if request.method == 'POST':
+
         cantidad = request.POST.get('cantidad')
-        print('Se recibió una solicitud POST')
-        print(cantidad)
+        
         if cantidad is not None:
             cantidad = int(cantidad)
             productos = Productos.objects.all()
@@ -22,8 +22,6 @@ def crear_instancia_produccion(request):
                 producto.save()
         else:
             cantidad = 0
-        
-        # Resto del código para crear una instancia de Produccion
 
         return redirect('produccion')
     else:
