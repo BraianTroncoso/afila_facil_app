@@ -46,6 +46,11 @@
 
                 <td>
 
+                <form action="#"  method="post" style="display: inline;" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info btn-sm btn-rounded">Finalizar</button>
+                </form>
+
                 <form action="{% url 'eliminar_produccion' %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
@@ -74,7 +79,7 @@
 <div class="d-flex flex-column align-items-center">
     <div class="row mb-4">
         <div class="form-outline w-100 text-center">
-            
+
             <label class="form-label text-center fw-bold mb-1 ml-2" for="cantidad">INGRESE LA CANTIDAD </label>
            
             <form action="{% url 'crear_instancia_produccion' %}" method="post" style="display: inline;" enctype="multipart/form-data">
