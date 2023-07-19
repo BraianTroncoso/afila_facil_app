@@ -4,4 +4,4 @@ from .models import Produccion
 # Create your views here.
 def mostrar_produccion(request):
     print('Hola produccion')
-    return render(request, 'produccion.html')
+    return render(request,'produccion.html')
