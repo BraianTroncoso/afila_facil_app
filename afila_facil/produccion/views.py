@@ -55,3 +55,6 @@ def eliminar_produccion(request):
         return redirect('produccion')
     else:
         return redirect('produccion')    
+
+def eliminar_todos_produccion(request):
+    pass        
