@@ -59,6 +59,15 @@ def eliminar_produccion(request):
     else:
         return redirect('produccion')
 
-
 def finalizar_todos_produccion(request):
-    pass        
+    if request.method == 'POST':
+        produccion = Produccion.objects.all()
+        productos = Productos.objects.all() 
+        if produccion:
+            for producciones in produccion:
+                producciones.produccion_cantidad -= 1
+                producciones.produccion_total -= productos.precio
+                producciones.save()
+            return redirect('produccion')
+    else:
+        return redirect('produccion')
