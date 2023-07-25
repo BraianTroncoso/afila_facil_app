@@ -59,13 +59,16 @@ def eliminar_produccion(request):
     else:
         return redirect('produccion')
 
-        
+
 def finalizar_todos_produccion(request):
     if request.method == 'POST':
-        produccion = Produccion.objects.first()
-        if produccion:
-            productos = produccion.productos.all()
-            for producto in productos:
+        # Obtener la instancia de Produccion o crear una nueva si no existe
+        produccion, _ = Produccion.objects.get_or_create()
+
+        # Verificar si la relación productos existe y no está vacía
+        if produccion.productos.exists():
+            # Recorrer los productos y realizar las operaciones necesarias
+            for producto in produccion.productos.all():
                 produccion.produccion_total -= producto.precio
                 producto.cantidad += 1
                 producto.save()
