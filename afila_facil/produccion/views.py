@@ -72,7 +72,7 @@ def finalizar_todos_produccion(request):
                     produccion.produccion_total -= producto.precio
                     producto.cantidad += 1
                     producto.save()
-
+                    print('blucle ok')
                 produccion.produccion_cantidad -= 1
                 produccion.save()
 
