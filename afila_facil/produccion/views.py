@@ -41,7 +41,9 @@ def crear_instancia_produccion(request):
     else:
         return redirect('produccion')
 
-
+# VER ESTA PARTE DEL CÓDIGO NUEVAMENTE PORQUE APARENTEMENTE SI SE AGREGA UN PRODUCTO DE CADA UNO
+# PERO CUANDO VOY A FINALIZAR TODOS, ESTOS ESTAN RELACIONADOS A UN SOLO ID, ENTONCES CUANDO FINALIZA TODO
+# RETORNA LA CANTIDAD SOLAMENTE AL ID 1 Y LOS DEMAS PRODUCTOS NO RECIBEN EL AUMENTO
 def eliminar_produccion(request):
     if request.method == 'POST':
         produccion = Produccion.objects.first()
