@@ -71,8 +71,6 @@ def finalizar_todos_produccion(request):
 
         if produccion and produccion.productos:
             while produccion.productos and produccion.produccion_cantidad > 0:
-                produccion.produccion_total -= produccion.productos.precio
-                produccion.productos.save()
                 print('bucle ok')
                 produccion.produccion_cantidad -= 1
                 produccion.save()
