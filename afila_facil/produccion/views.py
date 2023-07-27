@@ -67,7 +67,7 @@ def finalizar_todos_produccion(request):
         produccion = Produccion.objects.first()
 
         if produccion and produccion.productos:
-            while produccion.productos:
+            while produccion.productos and produccion.produccion_cantidad > 0:
                 produccion.produccion_total -= produccion.productos.precio
                 produccion.productos.cantidad += 1
                 produccion.productos.save()
