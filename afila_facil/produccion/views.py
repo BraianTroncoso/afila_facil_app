@@ -4,7 +4,7 @@ from materias_primas.models import Productos
 
 # Create your views here.
 def mostrar_produccion(request):
-    produccion = Produccion.objects.first() #Obtengo una sola instsancia en vez de todas
+    produccion = Produccion.objects.all()#Obtengo una sola instsancia en vez de todas
     return render(request,'produccion.html',{'produccion': produccion, 'mensaje': "No hay Productos en Produccion"})
 
 
