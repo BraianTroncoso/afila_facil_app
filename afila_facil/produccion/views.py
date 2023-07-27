@@ -67,16 +67,21 @@ def eliminar_produccion(request):
 def finalizar_todos_produccion(request):
     if request.method == 'POST':
         produccion = Produccion.objects.first()
+        productos = Productos.objects.all()
 
         if produccion and produccion.productos:
             while produccion.productos and produccion.produccion_cantidad > 0:
                 produccion.produccion_total -= produccion.productos.precio
-                produccion.productos.cantidad += 1
                 produccion.productos.save()
                 print('bucle ok')
                 produccion.produccion_cantidad -= 1
                 produccion.save()
-
+                for producto in productos:
+                    producto.cantidad += 1
+                    producto.save()
+                    produccion.produccion_total -= producto.precio
+                
+        produccion.save()    
         return redirect('produccion')
     else:
         return redirect('produccion')
