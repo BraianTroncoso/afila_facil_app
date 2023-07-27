@@ -4,7 +4,7 @@ from materias_primas.models import Productos
 
 # Create your views here.
 def mostrar_produccion(request):
-    produccion = Produccion.objects.all()
+    produccion = Produccion.objects.first()
     return render(request,'produccion.html',{'produccion': produccion, 'mensaje': "No hay Productos en Produccion"})
 
 
@@ -17,6 +17,7 @@ def crear_instancia_produccion(request):
             cantidad = int(cantidad)
             productos = Productos.objects.all()
 
+            produccion = Produccion.objects.create(producto_completo=True, productos=productos[0])
             for producto in productos:
                 producto.cantidad -= cantidad
                 producto.save()
