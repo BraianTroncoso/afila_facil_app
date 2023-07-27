@@ -60,22 +60,24 @@ def eliminar_produccion(request):
         return redirect('produccion')
 
 
-# def finalizar_todos_produccion(request):
-#     if request.method == 'POST':
-#         produccion = Produccion.objects.first()
+def finalizar_todos_produccion(request):
+    if request.method == 'POST':
+        produccion = Produccion.objects.first()
 
-#         if produccion:
-#             productos = produccion.productos.all()
+        if produccion:
+            productos = produccion.productos.all()
 
-#             if productos:
-#                 for producto in productos:
-#                     produccion.produccion_total -= producto.precio
-#                     producto.cantidad += 1
-#                     producto.save()
-#                     print('blucle ok')
-#                 produccion.produccion_cantidad -= 1
-#                 produccion.save()
+            while productos:
+                for producto in productos:
+                    produccion.produccion_total -= producto.precio
+                    producto.cantidad += 1
+                    producto.save()
+                    print('blucle ok')
+                produccion.produccion_cantidad -= 1
+                produccion.save()
+                productos = produccion.productos.all()
 
-#         return redirect('produccion')
-#     else:
-#         return redirect('produccion')
+        return redirect('produccion')
+    else:
+        return redirect('produccion')
+
