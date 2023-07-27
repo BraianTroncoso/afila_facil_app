@@ -17,6 +17,7 @@ def crear_instancia_produccion(request):
             cantidad = int(cantidad)
             productos = Productos.objects.all()
 
+            #Linea agg por bug - necesito tener mas de una instancia para no tener problemas en la foreignkey
             produccion = Produccion.objects.create(producto_completo=True, productos=productos[0])
             for producto in productos:
                 producto.cantidad -= cantidad
