@@ -8,7 +8,7 @@
     <title>Afila Facil</title>
 </head>
 <body>
-    <form class="user" action="POST">
+    <form class="user" action="{% url 'login' %}" method="post">
         {% csrf_token %}
     <div class="bg-img">
         <div class="content">
