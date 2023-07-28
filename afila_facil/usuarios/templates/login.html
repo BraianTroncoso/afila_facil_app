@@ -7,17 +7,19 @@
     <title>Afila Facil</title>
 </head>
 <body>
+    <form class="user" action="POST">
+        {% csrf_token %}
     <div class="bg-img">
         <div class="content">
             <header>Inicio de Sesión</header>
             <form action="#">
                 <div class="field">
                     <span class="fa fa-user"></span>
-                    <input type="text" required placeholder="Usuario">
+                    <input type="text" id="idusername" name="username" required placeholder="Usuario">
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
-                    <input type="password" class="password" required placeholder="Contraseña">
+                    <input type="password" class="password" id="id_password" name="password" required placeholder="Contraseña">
     
                 </div>
                 <div class="pass">
@@ -41,5 +43,6 @@
             </form>
         </div>
     </div>
+</form>
 </body>
 </html>
