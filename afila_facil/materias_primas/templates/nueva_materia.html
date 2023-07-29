@@ -4,13 +4,13 @@
 {% block content %}
     <div class="container-fluid">
         <div class="d-flex flex-column align-items-center">
-            <h2 class="mb-3 mt-2">Nuevo Producto</h2>
+            <h2 class="mb-3 mt-2">Nuevo Materia Prima</h2>
             <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
-                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nuevo_producto' %}" enctype="multipart/form-data">
+                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nueva_materia' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="form-outline w-100">
-                            <label class="form-label" for="nombre">Nombre Producto</label>
+                            <label class="form-label" for="nombre">Nombre Materia</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" />
                         </div>
                     </div>

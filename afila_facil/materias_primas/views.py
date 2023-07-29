@@ -3,7 +3,7 @@ from .models import Productos
 from .forms import ProductoForm
 
 
-def nuevo_producto(request):
+def nueva_materia(request):
     if request.method == 'POST':
         # Pasar los datos del formulario y los archivos adjuntos si los hay
         form = ProductoForm(request.POST, request.FILES)
@@ -14,14 +14,14 @@ def nuevo_producto(request):
             descripcion = form.cleaned_data['descripcion']
             imagen = form.cleaned_data['imagen']
 
-            productos = Productos(nombre=nombre, precio=precio,
+            materias = Productos(nombre=nombre, precio=precio,
                                   cantidad=cantidad, descripcion=descripcion, imagen=imagen)
-            productos.save()
-            return redirect('productos')
+            materias.save()
+            return redirect('materias_primas')
     else:
         form = ProductoForm()  # Crear una instancia del formulario en caso de una solicitud GET
 
-    return render(request, 'altaProducto.html', {'form': form})
+    return render(request, 'nueva_materia.html', {'form': form})
 
 
 def mostrar_materias_primas(request):
