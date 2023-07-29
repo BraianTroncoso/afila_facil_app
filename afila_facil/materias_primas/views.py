@@ -24,9 +24,9 @@ def nuevo_producto(request):
     return render(request, 'altaProducto.html', {'form': form})
 
 
-def mostrar_producto(request):
-    productos = Productos.objects.all()
-    return render(request, 'productos.html', {'productos': productos, 'mensaje': "No hay Productos"})
+def mostrar_materias_primas(request):
+    materias = Productos.objects.all()
+    return render(request, 'materias_primas.html', {'materias': materias, 'mensaje': "No hay Materia Prima"})
 
 
 

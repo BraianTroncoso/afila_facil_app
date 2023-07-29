@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('productos/', include('materias_primas.urls')),
+    path('materias_primas/', include('materias_primas.urls')),
     path('', include('produccion.urls')),
     path('admin/', admin.site.urls),
     path('login/', RedirectView.as_view(url=reverse_lazy('login'), permanent=False)),

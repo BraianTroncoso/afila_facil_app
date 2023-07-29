@@ -2,7 +2,7 @@
 {% load static %} 
 {% block content %}
 
-{% if productos%}
+{% if materias%}
 <div class="container">
     <table class="table align-middle mb-0 bg-white m-3 mb-5">
         <thead class="bg-light">
@@ -17,36 +17,36 @@
         </tr>
         </thead>
         <tbody>
-        {% for producto in productos %}
+        {% for materia in materias %}
             <tr>
                 <td>
                 <div class="d-flex align-items-center">
                     <img
-                        src="{{ producto.get_imagen_url }}"
+                        src="{{ materia.get_imagen_url }}"
                         alt="NO-IMG"
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
                     <div class="ms-3">
-                    <p class="fw-bold mb-1 ml-2">{{producto.nombre}}</p>
+                    <p class="fw-bold mb-1 ml-2">{{materia.nombre}}</p>
                     <p class="text-muted mb-0"></p>
                     </div>
                 </div>
                 </td>
                 <td>
-                <p class="fw-normal mb-1">{{ producto.descripcion }}</p>
+                <p class="fw-normal mb-1">{{ materia.descripcion }}</p>
                 </td>
-                <td>${{ producto.precio }}</td>
-                <td>{{ producto.cantidad }}</td>
+                <td>${{ materia.precio }}</td>
+                <td>{{ materia.cantidad }}</td>
                 {% if user.is_superuser %}
                 <td>
 
-                    <form action="{% url 'editar_producto' id=producto.id %}"  method="post" style="display: inline;" enctype="multipart/form-data">
+                    <form action="{% url 'editar_producto' id=materia.id %}"  method="post" style="display: inline;" enctype="multipart/form-data">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                     </form>
 
-                    <form action="{% url 'eliminar_producto' producto.id %}" method="post" style="display: inline;">
+                    <form action="{% url 'eliminar_producto' materia.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                     </form>
