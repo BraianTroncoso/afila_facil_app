@@ -15,7 +15,7 @@ def crear_instancia_produccion(request):
     if request.method == 'POST':
         cantidad = request.POST.get('cantidad')
 
-        if cantidad is not None and cantidad != '':
+        if cantidad is not None and cantidad != '' and int(cantidad) > 0:
             cantidad = int(cantidad)
         else:
             cantidad = 0
