@@ -46,7 +46,7 @@
                         <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                     </form>
 
-                    <form action="{% url 'eliminar_producto' materia.id %}" method="post" style="display: inline;">
+                    <form action="{% url 'eliminar_materia' materia.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                     </form>

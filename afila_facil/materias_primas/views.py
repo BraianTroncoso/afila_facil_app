@@ -30,7 +30,7 @@ def mostrar_materias_primas(request):
 
 
 
-def eliminar_producto(request, id):
+def eliminar_materia(request, id):
     Productos.objects.filter(pk=id).delete()
     mensaje = "Producto eliminado."
     materias = Productos.objects.all()
