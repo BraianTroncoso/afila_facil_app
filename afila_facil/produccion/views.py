@@ -52,18 +52,21 @@ def eliminar_produccion(request):
     if request.method == 'POST':
         produccion = Produccion.objects.first()
 
-        produccion.produccion_cantidad -= 1
-        produccion.save()
+        if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
+            produccion.produccion_cantidad -= 1
+            produccion.save()
 
-        materias = Materias.objects.all()
-        for materia in materias:
-            materia.cantidad += 1
-            materia.save()
-            produccion.produccion_total -= materia.precio
+            materias = Materias.objects.all()
+            for materia in materias:
+                materia.cantidad += 1
+                materia.save()
+                produccion.produccion_total -= materia.precio
 
-        produccion.save()
+                produccion.save()
 
-        return redirect('produccion')
+                return redirect('produccion')
+        else: 
+            return redirect('produccion')
     else:
         return redirect('produccion')
 
