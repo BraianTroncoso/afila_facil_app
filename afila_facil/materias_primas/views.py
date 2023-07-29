@@ -38,29 +38,29 @@ def eliminar_materia(request, id):
 
 
 
-def editar_producto(request, id):
-    producto = get_object_or_404(Productos, pk=id)
+def editar_materia(request, id):
+    materia = get_object_or_404(Productos, pk=id)
 
     if request.method == 'POST':
         form = ProductoForm(request.POST, request.FILES)
         if form.is_valid():
-            producto.nombre = form.cleaned_data['nombre']
-            producto.precio = form.cleaned_data['precio']
-            producto.cantidad = form.cleaned_data['cantidad']
-            producto.descripcion = form.cleaned_data['descripcion']
-            producto.imagen = form.cleaned_data['imagen']
-            producto.save()
-            return redirect('productos')
+            materia.nombre = form.cleaned_data['nombre']
+            materia.precio = form.cleaned_data['precio']
+            materia.cantidad = form.cleaned_data['cantidad']
+            materia.descripcion = form.cleaned_data['descripcion']
+            materia.imagen = form.cleaned_data['imagen']
+            materia.save()
+            return redirect('materias_primas')
     else:
         form = ProductoForm(initial={
-            'nombre': producto.nombre,
-            'precio': producto.precio,
-            'cantidad': producto.cantidad,
-            'descripcion': producto.descripcion,
-            'imagen': producto.imagen
+            'nombre': materia.nombre,
+            'precio': materia.precio,
+            'cantidad': materia.cantidad,
+            'descripcion': materia.descripcion,
+            'imagen': materia.imagen
         })
 
-    return render(request, 'modificacionProducto.html', {'form': form, 'producto': producto})
+    return render(request, 'modificacionMateria.html', {'form': form, 'materia': materia})
 
 
 
