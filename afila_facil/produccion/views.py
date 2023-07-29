@@ -55,11 +55,11 @@ def eliminar_produccion(request):
         produccion.produccion_cantidad -= 1
         produccion.save()
 
-        productos = Materias.objects.all()
-        for producto in productos:
-            producto.cantidad += 1
-            producto.save()
-            produccion.produccion_total -= producto.precio
+        materias = Materias.objects.all()
+        for materia in materias:
+            materia.cantidad += 1
+            materia.save()
+            produccion.produccion_total -= materia.precio
 
         produccion.save()
 
