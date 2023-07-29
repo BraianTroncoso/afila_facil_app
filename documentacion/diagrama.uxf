@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>260</x><y>150</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Producto&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>230</x><y>230</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Producto&gt;&gt;
 --
 -productoId: int
 -nombre: string
@@ -14,7 +14,7 @@
 +getPrecio()
 +setCantidad(cantidad)
 +getCantidad()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>40</y><w>210</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Produccion&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>100</y><w>210</w><h>60</h></coordinates><panel_attributes>&lt;&lt;Produccion&gt;&gt;
 --
 -produccionId:int
 --
