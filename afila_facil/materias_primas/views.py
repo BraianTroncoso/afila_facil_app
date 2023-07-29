@@ -60,7 +60,7 @@ def editar_materia(request, id):
             'imagen': materia.imagen
         })
 
-    return render(request, 'modificacionMateria.html', {'form': form, 'materia': materia})
+    return render(request, 'editar_materia.html', {'form': form, 'materia': materia})
 
 
 
