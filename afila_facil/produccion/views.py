@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
-from materias_primas.models import Productos
+from materias_primas.models import Materias
 
 # Create your views here.
 def mostrar_produccion(request):
     produccion = Produccion.objects.all()#Obtengo una sola instsancia en vez de todas
-    return render(request,'produccion.html',{'produccion': produccion, 'mensaje': "No hay Productos en Produccion"})
+    return render(request,'produccion.html',{'produccion': produccion, 'mensaje': "No hay Materiasen Produccion"})
 
 
 
@@ -15,7 +15,7 @@ def crear_instancia_produccion(request):
 
         if cantidad is not None:
             cantidad = int(cantidad)
-            productos = Productos.objects.all()
+            productos = Materias.objects.all()
 
             #Linea agg por bug - necesito tener mas de una instancia para no tener problemas en la foreignkey
             #produccion = Produccion.objects.create(producto_completo=True, productos=productos[0])
@@ -51,7 +51,7 @@ def eliminar_produccion(request):
         produccion.produccion_cantidad -= 1
         produccion.save()
 
-        productos = Productos.objects.all()
+        productos = Materias.objects.all()
         for producto in productos:
             producto.cantidad += 1
             producto.save()
@@ -67,16 +67,16 @@ def eliminar_produccion(request):
 def finalizar_todos_produccion(request):
     if request.method == 'POST':
         produccion = Produccion.objects.first()
-        productos = Productos.objects.all()
+        materias = Materias.objects.all()
 
-        if produccion and produccion.productos:
-            while produccion.productos and produccion.produccion_cantidad > 0:
+        if produccion and produccion.materias:
+            while produccion.materias and produccion.produccion_cantidad > 0:
                 produccion.produccion_cantidad -= 1
                 produccion.save()
-                for producto in productos:
-                    producto.cantidad += 1
-                    producto.save()
-                    produccion.produccion_total -= producto.precio
+                for materia in materias:
+                    materia.cantidad += 1
+                    materia.save()
+                    produccion.produccion_total -= materia.precio
                 
         produccion.save()    
         return redirect('produccion')

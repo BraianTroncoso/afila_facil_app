@@ -1,7 +1,7 @@
 from django import forms
-from .models import Productos
+from .models import Materias
     
-class ProductoForm(forms.Form):
+class MateriasForm(forms.Form):
     nombre = forms.CharField(max_length=100, required=True)
     descripcion = forms.CharField(max_length=255, required=True, widget=forms.Textarea)
     precio = forms.IntegerField(required=True)
@@ -9,5 +9,5 @@ class ProductoForm(forms.Form):
     imagen = forms.CharField(max_length=100, required=False)
 
     class Meta:
-            model = Productos
+            model = Materias
 

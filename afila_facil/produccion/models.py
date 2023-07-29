@@ -1,9 +1,9 @@
 from django.db import models
-from materias_primas.models import Productos
+from materias_primas.models import Materias
 
 class Produccion(models.Model):
     producto_completo = models.BooleanField(default=False)
-    productos = models.ForeignKey(Productos, on_delete=models.CASCADE, related_name='produccion', null=True)
+    materias = models.ForeignKey(Materias, on_delete=models.CASCADE, related_name='produccion', null=True)
     produccion_cantidad = models.IntegerField(default=0)
     produccion_total = models.IntegerField(default=0)
 
