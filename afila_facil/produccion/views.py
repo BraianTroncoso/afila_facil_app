@@ -14,6 +14,7 @@ def mostrar_produccion(request):
 def crear_instancia_produccion(request):
     if request.method == 'POST':
         cantidad = request.POST.get('cantidad')
+        materias = Materias.objects.all()
 
         if cantidad is not None and cantidad != '' and int(cantidad) > 0:
             cantidad = int(cantidad)
@@ -21,11 +22,15 @@ def crear_instancia_produccion(request):
             cantidad = 0
             return redirect('produccion')
 
-        materias = Materias.objects.all()
-
-        for materia in materias:
-            materia.cantidad -= cantidad
-            materia.save()
+  
+        total_materias = sum(materia.cantidad for materia in materias)
+        # ver lógica porque acá me está sumando TODAS las materias, y necesito un solo valor para la validacion
+        if cantidad < total_materias:
+            for materia in materias:
+                materia.cantidad -= cantidad
+                materia.save()
+        else:
+            return redirect('produccion')
 
         produccion = Produccion.objects.first()
         if not produccion:
