@@ -33,8 +33,8 @@ def mostrar_materias_primas(request):
 def eliminar_producto(request, id):
     Productos.objects.filter(pk=id).delete()
     mensaje = "Producto eliminado."
-    productos = Productos.objects.all()
-    return render(request, 'productos.html', {'productos': productos, 'mensaje': mensaje})
+    materias = Productos.objects.all()
+    return render(request, 'materias_primas.html', {'materias': materias, 'mensaje': mensaje})
 
 
 
