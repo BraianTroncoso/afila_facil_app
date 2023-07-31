@@ -94,3 +94,4 @@ def finalizar_todos_produccion(request):
         return redirect('produccion')
     else:
         return redirect('produccion')
+
