@@ -23,9 +23,9 @@ def crear_instancia_produccion(request):
             return redirect('produccion')
 
   
-        total_materias = sum(materia.cantidad for materia in materias)
-        # ver lógica porque acá me está sumando TODAS las materias, y necesito un solo valor para la validacion
-        if cantidad < total_materias:
+        minimo_cantidad_materias = min(materia.cantidad for materia in materias)
+        
+        if cantidad <= minimo_cantidad_materias:
             for materia in materias:
                 materia.cantidad -= cantidad
                 materia.save()
