@@ -25,7 +25,7 @@ def crear_instancia_produccion(request):
 
   
         minimo_cantidad_materias = min(materia.cantidad for materia in materias)
-        
+
         if cantidad <= minimo_cantidad_materias:
             for materia in materias:
                 materia.cantidad -= cantidad
@@ -44,6 +44,7 @@ def crear_instancia_produccion(request):
         total = sum(materia.precio * cantidad for materia in materias)
         produccion.produccion_total += total
         produccion.save()
+        
         if cantidad > 1:
             mensaje = "{} Producciones agregadas correctamente".format(cantidad)
         if cantidad == 1:
@@ -52,11 +53,6 @@ def crear_instancia_produccion(request):
         return redirect('produccion')
     else:
         return redirect('produccion')
-
-
-# VER ESTA PARTE DEL CÓDIGO NUEVAMENTE PORQUE APARENTEMENTE SI SE AGREGA UN PRODUCTO DE CADA UNO
-# PERO CUANDO VOY A FINALIZAR TODOS, ESTOS ESTAN RELACIONADOS A UN SOLO ID, ENTONCES CUANDO FINALIZA TODO
-# RETORNA LA CANTIDAD SOLAMENTE AL ID 1 Y LOS DEMAS PRODUCTOS NO RECIBEN EL AUMENTO
 
 
 def eliminar_produccion(request):
