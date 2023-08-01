@@ -19,8 +19,10 @@ def nuevo_proveedor(request):
             return redirect('proveedores.html')
         else:
             form = ProveedoresForm()    
-return render(request, 'nuevo_proveedor.html')
+    return render(request, 'nuevo_proveedor.html')
 
 
-def proveedores(request):
-    return render(request,'proveedores.html')
+
+def mostrar_proveedores(request):
+    proveedores = Proveedores.objects.all()
+    return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Materia Prima"})
