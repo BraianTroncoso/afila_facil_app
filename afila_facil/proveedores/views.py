@@ -3,9 +3,24 @@ from django.shortcuts import render
 # Create your views here.
 def nuevo_proveedor(request):
     if request.method == 'POST':
-        
+        form = ProveedoresForm(request.POST, request.FILES)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            direccion = form.cleaned_data['direccion']
+            telefono = form.cleaned_data['telefono']
+            email = form.cleaned_data['email']
+            imagen = form.cleaned_data['imagen']
 
-        return render(request, 'nuevo_proveedor.html')
+            proveedores = Proveedores(nombre=nombre, apellido=apellido,
+                                  direccion=direccion, telefono=telefono, email=email,
+                                  imagen=imagen)
+            proveedores.save()
+            return redirect('proveedores.html')
+        else:
+            form = ProveedoresForm()    
+return render(request, 'nuevo_proveedor.html')
+
 
 def proveedores(request):
     return render(request,'proveedores.html')
