@@ -1,5 +1,5 @@
 from django.db import models
-
+from proveedores.models import Proveedores
 
 
 # Create your models here.
@@ -7,6 +7,7 @@ class Materias(models.Model):
     nombre = models.CharField(max_length=45)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
+    proveedores = models.ManyToManyField(Proveedores)
     imagen = models.CharField(max_length=100)
 
 

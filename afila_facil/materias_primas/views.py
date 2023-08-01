@@ -11,11 +11,9 @@ def nueva_materia(request):
             nombre = form.cleaned_data['nombre']
             precio = form.cleaned_data['precio']
             cantidad = form.cleaned_data['cantidad']
-            descripcion = form.cleaned_data['descripcion']
             imagen = form.cleaned_data['imagen']
-
             materias = Materias(nombre=nombre, precio=precio,
-                                  cantidad=cantidad, descripcion=descripcion, imagen=imagen)
+                                  cantidad=cantidad, imagen=imagen)
             materias.save()
             return redirect('materias_primas')
     else:
