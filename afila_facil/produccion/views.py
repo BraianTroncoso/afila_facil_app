@@ -100,3 +100,6 @@ def finalizar_todos_produccion(request):
         return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
                                       # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias  
 
+
+def nueva_produccion(request):
+    redirect(request,'nueva_produccion.html')
