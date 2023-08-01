@@ -10,3 +10,7 @@ class Proveedores(models.Model):
     email = models.CharField(max_length=100)
     produccion = models.ForeignKey(Produccion, on_delete=models.CASCADE, related_name='produccion', null=True)
 
+
+    class Meta:
+        db_table = 'proveedores'
+        verbose_name = "Proveedores"
