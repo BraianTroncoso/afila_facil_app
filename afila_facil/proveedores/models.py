@@ -8,6 +8,7 @@ class Proveedores(models.Model):
     direccion = models.CharField(max_length=100)
     tel = models.CharField(max_length=500)
     email = models.CharField(max_length=100)
+    imagen = models.CharField(max_length=100) 
     produccion = models.ForeignKey(Produccion, on_delete=models.CASCADE, related_name='produccion', null=True)
 
 
