@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Proveedores
+from .forms import ProveedoresForm
 # Create your views here.
 def nuevo_proveedor(request):
     if request.method == 'POST':
@@ -25,4 +27,4 @@ def nuevo_proveedor(request):
 
 def mostrar_proveedores(request):
     proveedores = Proveedores.objects.all()
-    return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Materia Prima"})
+    return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Proveedores"})
