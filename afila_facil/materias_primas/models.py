@@ -7,7 +7,7 @@ class Materias(models.Model):
     nombre = models.CharField(max_length=45)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
-    proveedores = models.ManyToManyField(Proveedores)
+    proveedores = models.ForeignKey(Proveedores, on_delete=models.CASCADE, null=True, blank=True)
     imagen = models.CharField(max_length=100)
 
 
