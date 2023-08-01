@@ -104,4 +104,5 @@ def finalizar_todos_produccion(request):
 
 
 def nueva_produccion(request):
-    return redirect(request,'nueva_produccion')
+    # Tu lógica de vista aquí...
+    return render(request,'nueva_produccion.html')
