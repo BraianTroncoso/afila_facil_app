@@ -9,7 +9,7 @@ from django.contrib import messages
 def mostrar_produccion(request):
     # Obtengo una sola instsancia en vez de todas
     produccion = Produccion.objects.all()
-    return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materiasen Produccion"})
+    return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
 def crear_instancia_produccion(request):
@@ -44,7 +44,11 @@ def crear_instancia_produccion(request):
         total = sum(materia.precio * cantidad for materia in materias)
         produccion.produccion_total += total
         produccion.save()
-        messages.success(request, "El producto fue creado correctamente")
+        if cantidad > 1:
+            mensaje = "{} Producciones agregadas correctamente".format(cantidad)
+        if cantidad == 1:
+            mensaje = "{} Produccion agregada correctamente".format(cantidad)
+        messages.success(request, mensaje)
         return redirect('produccion')
     else:
         return redirect('produccion')
