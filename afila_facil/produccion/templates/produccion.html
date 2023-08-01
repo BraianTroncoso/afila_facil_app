@@ -86,18 +86,17 @@
                 {% csrf_token %}
                 <input type="number" id="cantidad" name="cantidad" class="form-control" />
                 <button type="submit" class="btn btn-success btn-sm btn-rounded">AGREGAR A PRODUCCION</button>
-                {% if messages %}
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        
-                    </div>
-                {% endfor %}
-            {% endif %}
             </form>
             
         </div>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show text-center w-25" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 </div>
 
 {%endif%}
