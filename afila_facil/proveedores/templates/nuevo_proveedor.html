@@ -10,8 +10,37 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="form-outline w-100">
-                            <label class="form-label" for="nombre">Nombre Proveedor</label>
+                            <label class="form-label" for="nombre">Nombre</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="direccion">Direccion</label>
+                            <input type="text" id="direccion" name="direccion" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="telefono">Teléfono</label>
+                            <input type="text" id="telefono" name="telefono" class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" />
                         </div>
                     </div>
 
@@ -21,7 +50,7 @@
                             <input type="number" id="precio" name="precio" class="form-control" />
                         </div>
                     </div>
-
+                    
                     <div class="row mb-4">
                         <div class="form-outline w-100">
                             <label class="form-label" for="cantidad">Cantidad: </label>
@@ -29,12 +58,6 @@
                         </div>
                     </div>
 
-                    <div class="row mb-4">
-                        <div class="form-outline w-100 d-flex flex-column">
-                            <label class="form-label" for="descripcion">Descripcion</label>
-                            <textarea rows="3" cols="50" id="descripcion" name="descripcion"></textarea>
-                        </div>
-                    </div>
             
                     <div class="row mb-4">
                         <div class="form-outline">
