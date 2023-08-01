@@ -99,7 +99,7 @@ def finalizar_todos_produccion(request):
     else:
         return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
                                       # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias  
-
+                                      # También borré la instancia ya creada y se rompió todo  
 
 
 
