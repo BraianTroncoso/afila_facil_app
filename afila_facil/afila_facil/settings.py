@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'materias_primas',
     'produccion',
-    'usuarios'
+    'usuarios',
+    'proveedores'
 ]
 
 MIDDLEWARE = [
