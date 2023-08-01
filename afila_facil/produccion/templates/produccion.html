@@ -87,7 +87,13 @@
                 <input type="number" id="cantidad" name="cantidad" class="form-control" />
                 <button type="submit" class="btn btn-success btn-sm btn-rounded">AGREGAR A PRODUCCION</button>
             </form>
-        
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
 from materias_primas.models import Materias
+from django.contrib import messages
 
 # Create your views here.
 
@@ -30,6 +31,7 @@ def crear_instancia_produccion(request):
                 materia.cantidad -= cantidad
                 materia.save()
         else:
+            messages.warning(request, "No hay stock disponible")
             return redirect('produccion')
 
         produccion = Produccion.objects.first()
@@ -42,7 +44,7 @@ def crear_instancia_produccion(request):
         total = sum(materia.precio * cantidad for materia in materias)
         produccion.produccion_total += total
         produccion.save()
-
+        messages.success(request, "El producto fue creado correctamente")
         return redirect('produccion')
     else:
         return redirect('produccion')
