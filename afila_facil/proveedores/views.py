@@ -18,7 +18,7 @@ def nuevo_proveedor(request):
                                   direccion=direccion, telefono=telefono, email=email,
                                   imagen=imagen)
             proveedores.save()
-            return redirect('proveedores.html')
+            return redirect('proveedores')
         else:
             form = ProveedoresForm()    
     return render(request, 'nuevo_proveedor.html')

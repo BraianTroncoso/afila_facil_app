@@ -6,7 +6,7 @@ class Proveedores(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     direccion = models.CharField(max_length=100)
-    tel = models.CharField(max_length=500)
+    telefono = models.IntegerField(null=True, blank=True)
     email = models.CharField(max_length=100)
     imagen = models.TextField(null=True, blank=True)
     produccion = models.ForeignKey(Produccion, on_delete=models.CASCADE, related_name='produccion', null=True)
