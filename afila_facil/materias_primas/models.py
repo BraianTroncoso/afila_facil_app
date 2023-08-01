@@ -5,7 +5,6 @@ from django.db import models
 # Create your models here.
 class Materias(models.Model):
     nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=200)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
     imagen = models.CharField(max_length=100)
