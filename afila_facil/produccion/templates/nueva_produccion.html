@@ -4,9 +4,9 @@
 {% block content %}
     <div class="container-fluid">
         <div class="d-flex flex-column align-items-center">
-            <h2 class="mb-3 mt-2">Nueva Proveedor</h2>
+            <h2 class="mb-3 mt-2">Nueva Produccion</h2>
             <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
-                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nuevo_proveedor' %}" enctype="multipart/form-data">
+                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nueva_produccion' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="form-outline w-100" >
@@ -36,21 +36,6 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="form-outline w-100">
-                            <label class="form-label" for="email">Email:</label>
-                            <input type="text" id="email" name="email" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-outline">
-                            <label class="form-label w-100" for="imagen">Imagen Proveedor</label>
-                            <input type="file" id="imagen" name="imagen" class="form-control" />
-                        </div>
-                    </div>
-                  
                     {% if request.user.is_superuser %}
                     
                     <div class="row mb-4">

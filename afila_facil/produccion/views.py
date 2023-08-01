@@ -101,5 +101,7 @@ def finalizar_todos_produccion(request):
                                       # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias  
 
 
+
+
 def nueva_produccion(request):
-    redirect(request,'nueva_produccion.html')
+    return redirect(request,'nueva_produccion')
