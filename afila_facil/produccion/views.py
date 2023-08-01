@@ -80,11 +80,13 @@ def eliminar_produccion(request):
 
 def finalizar_todos_produccion(request):
     if request.method == 'POST':
+   
         produccion = Produccion.objects.first()
         materias = Materias.objects.all()
 
         if produccion and produccion.materias:
             while produccion.materias and produccion.produccion_cantidad > 0:
+
                 produccion.produccion_cantidad -= 1
                 produccion.save()
                 for materia in materias:
@@ -95,5 +97,6 @@ def finalizar_todos_produccion(request):
         produccion.save()
         return redirect('produccion')
     else:
-        return redirect('produccion')
+        return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
+                                      # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias  
 
