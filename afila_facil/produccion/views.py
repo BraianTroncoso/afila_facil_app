@@ -5,17 +5,20 @@ from django.contrib import messages
 
 # Create your views here.
 
+def nueva_produccion(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        produccion = Produccion.objects.create(nombre=nombre, producto_completo=True)
+        return redirect('produccion')
+    else:
+        return render(request, 'nueva_produccion.html')
+
+
 
 def mostrar_produccion(request):
     # Obtengo una sola instsancia en vez de todas
     produccion = Produccion.objects.all()
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
-
-
-def nueva_produccion():
-    pass
-
-
 
 
 def crear_instancia_produccion(request):
@@ -109,6 +112,3 @@ def finalizar_todos_produccion(request):
 
 
 
-def nueva_produccion(request):
-    # Tu lógica de vista aquí...
-    return render(request,'nueva_produccion.html')

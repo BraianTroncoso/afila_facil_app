@@ -16,9 +16,11 @@
         </tr>
         </thead>
 
+        {% if produccion%}
 
         <tbody>
 
+            {% for produccion in produccion %}
 
             <tr>
                 <td>
@@ -64,17 +66,17 @@
 
             </tr>
 
-
+            {%endfor%}
 
         </tbody>
     </table> 
 </div>
 
-
+{%else%}
 
     <p class="fw-normal mb-1">{{ mensaje }}</p>
 
-
+{%endif%}
 
 {% if user.is_superuser %}
 
