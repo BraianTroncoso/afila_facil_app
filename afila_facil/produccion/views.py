@@ -18,10 +18,11 @@ def nueva_produccion(request):
 def mostrar_produccion(request):
     # Obtengo una sola instsancia en vez de todas
     produccion = Produccion.objects.all()
+    
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
-def agregar_materias_produccion(request):
+def agregar_materias_produccion(request, produccion_id):
     if request.method == 'POST':
         cantidad = request.POST.get('cantidad')
         materias = Materias.objects.all()
@@ -43,9 +44,7 @@ def agregar_materias_produccion(request):
             messages.warning(request, "No hay stock disponible")
             return redirect('produccion')
 
-        produccion = Produccion.objects.first()
-        if not produccion:
-            produccion = Produccion.objects.create(producto_completo=True)
+        produccion = Produccion.objects.get(id=produccion_id) 
 
         produccion.produccion_cantidad += cantidad
         produccion.save()

@@ -20,7 +20,7 @@
 
         <tbody>
 
-            {% for produccion in produccion %}
+            {% for prod in produccion %}
 
             <tr>
                 <td>
@@ -33,17 +33,17 @@
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
-                        <p class="fw-normal mb-1 fw-bold" >{{produccion.nombre}}</p>
+                        <p class="fw-normal mb-1 fw-bold" >{{prod.nombre}}</p>
                 </div>
                 
                 </td>
                 
                 <td>
-                    <p class="fw-normal mb-1">{{produccion.produccion_cantidad}}</p>
+                    <p class="fw-normal mb-1">{{prod.produccion_cantidad}}</p>
                 </td>
 
                 <td>
-                    <p class="fw-normal mb-1">$ {{produccion.produccion_total}}</p>
+                    <p class="fw-normal mb-1">$ {{prod.produccion_total}}</p>
                 </td>
 
                 {% if user.is_superuser %}
@@ -79,22 +79,28 @@
 {%endif%}
 
 {% if user.is_superuser %}
-
 <div class="d-flex flex-column align-items-center">
     <div class="row mb-4">
         <div class="form-outline w-100 text-center">
-
             <label class="form-label text-center fw-bold mb-1 ml-2" for="cantidad">INGRESE LA CANTIDAD </label>
-           
-            <form action="{% url 'agregar_materias_produccion' %}" method="post" style="display: inline;" enctype="multipart/form-data">
+            {% for prod in produccion %}
+            <form action="{% url 'agregar_materias_produccion' prod.id%}" method="post" style="display: inline;" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="number" id="cantidad" name="cantidad" class="form-control" />
                 <p class="fw-normal mb-1 fw-bold mt-2">SELECCIONE EL TIPO DE PRODUCCION</p>
-                <input type="number" id="#" name="#" class="form-control" />
+                <select id="produccion_id" name="produccion_id" class="form-select">
+                    {% for prod in produccion %}
+                        <option value="{{ prod.id }}">{{ prod.nombre }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit" class="btn btn-success btn-sm btn-rounded mt-2">AGREGAR A PRODUCCION</button>
             </form>
+            {% endfor %}
         </div>
+       
     </div>
+
+    
     {% if messages %}
     {% for message in messages %}
         <div class="alert {{ message.tags }} alert-dismissible fade show text-center w-25" role="alert">
