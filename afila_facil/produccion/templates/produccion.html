@@ -89,9 +89,10 @@
             <form action="{% url 'crear_instancia_produccion' %}" method="post" style="display: inline;" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="number" id="cantidad" name="cantidad" class="form-control" />
+                <p class="fw-normal mb-1 fw-bold">SELECCIONE EL TIPO DE PRODUCCION</p>
+                <input type="number" id="cantidad" name="cantidad" class="form-control" />
                 <button type="submit" class="btn btn-success btn-sm btn-rounded">AGREGAR A PRODUCCION</button>
             </form>
-            
         </div>
     </div>
     {% if messages %}
