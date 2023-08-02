@@ -12,6 +12,12 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
+def nueva_produccion():
+    pass
+
+
+
+
 def crear_instancia_produccion(request):
     if request.method == 'POST':
         cantidad = request.POST.get('cantidad')
