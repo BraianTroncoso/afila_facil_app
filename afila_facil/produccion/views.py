@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
 from materias_primas.models import Materias
 from django.contrib import messages
+from .forms import SeleccionProduccionForm
 
-# Create your views here.
 
 def nueva_produccion(request):
     if request.method == 'POST':
@@ -14,11 +14,8 @@ def nueva_produccion(request):
         return render(request, 'nueva_produccion.html')
 
 
-
 def mostrar_produccion(request):
-    # Obtengo una sola instsancia en vez de todas
     produccion = Produccion.objects.all()
-    
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
@@ -33,7 +30,6 @@ def agregar_materias_produccion(request, produccion_id):
             cantidad = 0
             return redirect('produccion')
 
-  
         minimo_cantidad_materias = min(materia.cantidad for materia in materias)
 
         if cantidad <= minimo_cantidad_materias:
@@ -67,7 +63,6 @@ def agregar_materias_produccion(request, produccion_id):
 def eliminar_produccion(request):
     if request.method == 'POST':
         produccion = Produccion.objects.first()
-
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
             produccion.produccion_cantidad -= 1
             produccion.save()
@@ -85,6 +80,7 @@ def eliminar_produccion(request):
             return redirect('produccion')
     else:
         return redirect('produccion')
+
 
 
 def finalizar_todos_produccion(request):
