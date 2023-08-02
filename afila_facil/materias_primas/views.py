@@ -46,7 +46,7 @@ def editar_materia(request, id):
             materia.nombre = form.cleaned_data['nombre']
             materia.precio = form.cleaned_data['precio']
             materia.cantidad = form.cleaned_data['cantidad']
-            materia.descripcion = form.cleaned_data['descripcion']
+            materia.proveedores = form.cleaned_data['proveedores']
             materia.imagen = form.cleaned_data['imagen']
             materia.save()
             return redirect('materias_primas')
@@ -55,7 +55,7 @@ def editar_materia(request, id):
             'nombre': materia.nombre,
             'precio': materia.precio,
             'cantidad': materia.cantidad,
-            'descripcion': materia.descripcion,
+            'proveedores': materia.proveedores,
             'imagen': materia.imagen
         })
 
