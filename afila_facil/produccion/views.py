@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
 from materias_primas.models import Materias
 from django.contrib import messages
-from .forms import SeleccionProduccionForm
+from .forms import AgregarMateriasForm
 
 
 def nueva_produccion(request):
