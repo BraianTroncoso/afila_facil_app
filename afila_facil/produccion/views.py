@@ -21,7 +21,7 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
-def crear_instancia_produccion(request):
+def agregar_materias_produccion(request):
     if request.method == 'POST':
         cantidad = request.POST.get('cantidad')
         materias = Materias.objects.all()
@@ -62,6 +62,7 @@ def crear_instancia_produccion(request):
         return redirect('produccion')
     else:
         return redirect('produccion')
+
 
 
 def eliminar_produccion(request):
