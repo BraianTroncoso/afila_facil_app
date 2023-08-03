@@ -1,3 +1,6 @@
+{% extends "materias_primas/layout.html" %}
+
+{% block content %}
 {% if user.is_superuser %}
 <div class="d-flex flex-column align-items-center">
     <div class="row mb-4">
@@ -32,3 +35,7 @@
 </div>
 
 {%endif%}
+
+
+
+{% endblock %}

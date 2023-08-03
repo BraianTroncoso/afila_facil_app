@@ -38,7 +38,7 @@ def agregar_materias_produccion(request, produccion_id):
                 materia.save()
         else:
             messages.warning(request, "No hay stock disponible")
-            return redirect('produccion')
+            return redirect('agregar_materias_produccion')
 
         produccion = Produccion.objects.get(id=produccion_id) 
 
@@ -54,9 +54,9 @@ def agregar_materias_produccion(request, produccion_id):
         if cantidad == 1:
             mensaje = "{} Produccion agregada correctamente".format(cantidad)
         messages.success(request, mensaje)
-        return redirect('produccion')
+        return redirect('agregar_materias_produccion')
     else:
-        return redirect('produccion')
+        return redirect('agregar_materias_produccion')
 
 
 
