@@ -42,10 +42,16 @@
               <a class="dropdown-item" href="{% url 'nueva_produccion' %}">NUEVA PRODUCCION</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'produccion' %}">PRODUCCION</a>
-      </li>
-  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PRODUCCION
+          </a>
+          
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'produccion' %}">VER SUB PRODUCTO</a>
+              <a class="dropdown-item" href="#">ENVASES</a>
+              <a class="dropdown-item" href="{% url 'nueva_materia' %}">PRODUCTO TERMINADO</a>
+          </div>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'clientes' %}">CLIENTES</a>
         </li>

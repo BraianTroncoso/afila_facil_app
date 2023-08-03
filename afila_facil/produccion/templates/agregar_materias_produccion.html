@@ -6,7 +6,7 @@
     <div class="row mb-4">
         <div class="form-outline w-100 text-center">
             <label class="form-label text-center fw-bold mb-1 ml-2" for="cantidad">INGRESE LA CANTIDAD </label>
-            {% for prod in produccion %}
+
             <form action="{% url 'agregar_materias_produccion' prod.id %}" method="post" style="display: inline;" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="number" id="cantidad" name="cantidad" class="form-control" />
@@ -18,7 +18,7 @@
                 </select>
                 <button type="submit" class="btn btn-success btn-sm btn-rounded mt-2">AGREGAR A PRODUCCION</button>
             </form>
-            {% endfor %}
+
         </div>
        
     </div>

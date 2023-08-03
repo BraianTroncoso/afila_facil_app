@@ -59,6 +59,10 @@ def mostrar_produccion(request):
 
 # Realizar nuevamente la funcion de 0, dejar esta de guia. Crear un form como en los demas casos, despues adaparlo porque sino estoy copiando
 # Y haciendo cualquier cosa, primero voy hacer que funcione después vemos lo demas.
+# En produccion voy a tener Sub producto en donde solo por ahora iria el Afilador
+# Despues, eso pasa Envasado y seleccionamos el tipo de envasado
+# Despues pasa a producto terminado, y despues se salida de cliente
+# Por ultimo vemos el tema del envio si dejamos eso o no, pero lo tenemos ahi
 
 def eliminar_produccion(request):
     if request.method == 'POST':
