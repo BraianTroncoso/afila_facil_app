@@ -78,40 +78,7 @@
 
 {%endif%}
 
-<!-- {% if user.is_superuser %}
-<div class="d-flex flex-column align-items-center">
-    <div class="row mb-4">
-        <div class="form-outline w-100 text-center">
-            <label class="form-label text-center fw-bold mb-1 ml-2" for="cantidad">INGRESE LA CANTIDAD </label>
-            {% for prod in produccion %}
-            <form action="#" method="post" style="display: inline;" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="number" id="cantidad" name="cantidad" class="form-control" />
-                <p class="fw-normal mb-1 fw-bold mt-2">SELECCIONE EL TIPO DE PRODUCCION</p>
-                <select id="produccion_id" name="produccion_id" class="form-select">
-                    {% for prod in produccion %}
-                        <option value="{{ prod.id }}">{{ prod.nombre }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit" class="btn btn-success btn-sm btn-rounded mt-2">AGREGAR A PRODUCCION</button>
-            </form>
-            {% endfor %}
-        </div>
-       
-    </div>
 
-    
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible fade show text-center w-25" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endfor %}
-{% endif %}
-</div>
-
-{%endif%} -->
 
 {% endblock %}
 
