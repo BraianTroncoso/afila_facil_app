@@ -19,46 +19,46 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
-def agregar_materias_produccion(request, produccion_id):
-    if request.method == 'POST':
-        cantidad = request.POST.get('cantidad')
-        materias = Materias.objects.all()
+# def agregar_materias_produccion(request, produccion_id):
+#     if request.method == 'POST':
+#         cantidad = request.POST.get('cantidad')
+#         materias = Materias.objects.all()
 
-        if cantidad is not None and cantidad != '' and int(cantidad) > 0:
-            cantidad = int(cantidad)
-        else:
-            cantidad = 0
-            return redirect('produccion')
+#         if cantidad is not None and cantidad != '' and int(cantidad) > 0:
+#             cantidad = int(cantidad)
+#         else:
+#             cantidad = 0
+#             return redirect('agregar_materias_produccion')
+#         minimo_cantidad_materias = min(materia.cantidad for materia in materias)
 
-        minimo_cantidad_materias = min(materia.cantidad for materia in materias)
+#         if cantidad <= minimo_cantidad_materias:
+#             for materia in materias:
+#                 materia.cantidad -= cantidad
+#                 materia.save()
+#         else:
+#             messages.warning(request, "No hay stock disponible")
+#             return redirect('agregar_materias_produccion')
 
-        if cantidad <= minimo_cantidad_materias:
-            for materia in materias:
-                materia.cantidad -= cantidad
-                materia.save()
-        else:
-            messages.warning(request, "No hay stock disponible")
-            return redirect('agregar_materias_produccion')
+#         produccion = Produccion.objects.get(id=produccion_id) 
 
-        produccion = Produccion.objects.get(id=produccion_id) 
+#         produccion.produccion_cantidad += cantidad
+#         produccion.save()
 
-        produccion.produccion_cantidad += cantidad
-        produccion.save()
-
-        total = sum(materia.precio * cantidad for materia in materias)
-        produccion.produccion_total += total
-        produccion.save()
+#         total = sum(materia.precio * cantidad for materia in materias)
+#         produccion.produccion_total += total
+#         produccion.save()
         
-        if cantidad > 1:
-            mensaje = "{} Producciones agregadas correctamente".format(cantidad)
-        if cantidad == 1:
-            mensaje = "{} Produccion agregada correctamente".format(cantidad)
-        messages.success(request, mensaje)
-        return redirect('agregar_materias_produccion')
-    else:
-        return redirect('agregar_materias_produccion')
+#         if cantidad > 1:
+#             mensaje = "{} Producciones agregadas correctamente".format(cantidad)
+#         if cantidad == 1:
+#             mensaje = "{} Produccion agregada correctamente".format(cantidad)
+#         messages.success(request, mensaje)
+#         return redirect('agregar_materias_produccion')
+#     else:
+#         return redirect('agregar_materias_produccion')
 
-
+# Realizar nuevamente la funcion de 0, dejar esta de guia. Crear un form como en los demas casos, despues adaparlo porque sino estoy copiando
+# Y haciendo cualquier cosa, primero voy hacer que funcione después vemos lo demas.
 
 def eliminar_produccion(request):
     if request.method == 'POST':
