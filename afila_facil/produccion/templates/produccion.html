@@ -52,7 +52,7 @@
 
                 <form action="{% url 'finalizar_todos_produccion' %}"  method="post" style="display: inline;" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-info btn-sm btn-rounded">Finalizar</button>
+                        <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                 </form>
 
                 <form action="{% url 'eliminar_produccion' %}" method="post" style="display: inline;">
