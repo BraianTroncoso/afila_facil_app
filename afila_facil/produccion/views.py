@@ -62,7 +62,10 @@ def editar_produccion(request, id):
                 for materia in materias:
                     materia.cantidad -= produccion.produccion_cantidad
                     materia.save()
-                #messages.success(request, "Producción actualizada correctamente.")
+                #messages.success(request, "Producción actualizada correctamente.")                                
+                total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
+                produccion.produccion_total += total
+
                 produccion.produccion_cantidad += cantidad 
                 produccion.save()
                 return redirect('produccion')     
