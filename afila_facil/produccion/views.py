@@ -46,6 +46,7 @@ def editar_produccion(request, id):
 
         produccion = get_object_or_404(Produccion, pk=id)
         cantidad = produccion.produccion_cantidad
+        total_actualizado = produccion.produccion_total
         form = ProduccionForm(request.POST)
         if form.is_valid():
             produccion.nombre = form.cleaned_data['nombre']
@@ -62,11 +63,17 @@ def editar_produccion(request, id):
                 for materia in materias:
                     materia.cantidad -= produccion.produccion_cantidad
                     materia.save()
-                #messages.success(request, "Producción actualizada correctamente.")                                
-                total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
-                produccion.produccion_total += total
+                #messages.success(request, "Producción actualizada correctamente.")
 
-                produccion.produccion_cantidad += cantidad 
+                # VER VALIDACION PORQUE ME SUMA DE TODAS MANERAS EL TOTAL, CUANDO YO EDITO, NO NECESITO
+                # QUE ME SUME EL TOTAL DE ALGO QUE YA TENGO, OSEA, ESTA MAL LA LÓGICA
+                total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
+                if total_actualizado != total:                                                
+                    produccion.produccion_total += total
+
+                if produccion.produccion_cantidad != cantidad:
+                    produccion.produccion_cantidad += cantidad
+
                 produccion.save()
                 return redirect('produccion')     
             else:
