@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
 from materias_primas.models import Materias
 from django.contrib import messages
-from .forms import AgregarMateriasForm
+from .forms import ProduccionForm
 
 
 def nueva_produccion(request):
@@ -46,25 +46,17 @@ def editar_produccion(request, id):
     if request.method == 'POST':
         form = ProduccionForm(request.POST, request.FILES)
         if form.is_valid():
-            materia.nombre = form.cleaned_data['nombre']
-            materia.precio = form.cleaned_data['precio']
-            materia.cantidad = form.cleaned_data['cantidad']
-            materia.proveedores = form.cleaned_data['proveedores']
-            materia.imagen = form.cleaned_data['imagen']
-            materia.save()
-            return redirect('materias_primas')
+            produccion.nombre = form.cleaned_data['nombre']
+            produccion.cantidad = form.cleaned_data['cantidad']
+            return redirect('produccion')
     else:
-        form = MateriasForm(initial={
-            'nombre': materia.nombre,
-            'precio': materia.precio,
-            'cantidad': materia.cantidad,
-            'proveedores': materia.proveedores,
-            'imagen': materia.imagen
+        form = ProduccionForm(initial={
+            'nombre': produccion.nombre,
+            'cantidad': produccion.cantidad,
         })
 
-    return render(request, 'editar_materia.html', {'form': form, 'materia': materia})
+    return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
 
-    pass
 
 # def agregar_materias_produccion(request, produccion_id):
 #     if request.method == 'POST':
