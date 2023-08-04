@@ -42,14 +42,26 @@ def eliminar_produccion(request):
 
 
 def editar_produccion(request, id):
-    produccion = get_object_or_404(Produccion, pk=id)
     if request.method == 'POST':
+
+        produccion = get_object_or_404(Produccion, pk=id)
         form = ProduccionForm(request.POST)
         if form.is_valid():
             produccion.nombre = form.cleaned_data['nombre']
             produccion.produccion_cantidad = form.cleaned_data['cantidad']
+
+            materias = Materias.objects.filter(id__in[1, 2, 3, 4, 5, 6])
+            minimo_cantidad_materias = min(materia.cantidad for materia in materias)
+            
+            if produccion.produccion_cantidad <= minimo_cantidad_materias:
+             for materia in materias:
+                 materia.cantidad -= cantidad
+                 materia.save()
+            else:
+                messages.warning(request, "No hay stock disponible")
             produccion.save()
             return redirect('produccion')
+
     else:
         form = ProduccionForm(initial={
             'nombre': produccion.nombre,
