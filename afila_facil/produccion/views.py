@@ -50,16 +50,24 @@ def editar_produccion(request, id):
             produccion.nombre = form.cleaned_data['nombre']
             produccion.produccion_cantidad = form.cleaned_data['cantidad']
 
-            materias = Materias.objects.filter(id__in[1, 2, 3, 4, 5, 6])
+            # Obtener las materias específicas que se van a modificar
+            materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
+            # Calcular el mínimo de cantidad de materias
             minimo_cantidad_materias = min(materia.cantidad for materia in materias)
-            
+
+            # Verificar si hay suficiente stock
             if produccion.produccion_cantidad <= minimo_cantidad_materias:
-             for materia in materias:
-                 materia.cantidad -= cantidad
-                 materia.save()
+                # Actualizar las cantidades de las materias
+                for materia in materias:
+                    materia.cantidad -= produccion.produccion_cantidad
+                    materia.save()
+
+                    
+                produccion.save()     
             else:
                 messages.warning(request, "No hay stock disponible")
-            produccion.save()
+                
+            messages.success(request, "Producción actualizada correctamente.")
             return redirect('produccion')
 
     else:
