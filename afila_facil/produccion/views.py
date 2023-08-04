@@ -19,6 +19,52 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
+def eliminar_produccion(request):
+    if request.method == 'POST':
+        produccion = Produccion.objects.first()
+        if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
+            produccion.produccion_cantidad -= 1
+            produccion.save()
+
+            materias = Materias.objects.all()
+            for materia in materias:
+                materia.cantidad += 1
+                materia.save()
+                produccion.produccion_total -= materia.precio
+
+                produccion.save()
+
+                return redirect('produccion')
+        else: 
+            return redirect('produccion')
+    else:
+        return redirect('produccion')
+
+
+def editar_produccion(request, id):
+    produccion = get_object_or_404(Produccion, pk=id)
+    if request.method == 'POST':
+        form = ProduccionForm(request.POST, request.FILES)
+        if form.is_valid():
+            materia.nombre = form.cleaned_data['nombre']
+            materia.precio = form.cleaned_data['precio']
+            materia.cantidad = form.cleaned_data['cantidad']
+            materia.proveedores = form.cleaned_data['proveedores']
+            materia.imagen = form.cleaned_data['imagen']
+            materia.save()
+            return redirect('materias_primas')
+    else:
+        form = MateriasForm(initial={
+            'nombre': materia.nombre,
+            'precio': materia.precio,
+            'cantidad': materia.cantidad,
+            'proveedores': materia.proveedores,
+            'imagen': materia.imagen
+        })
+
+    return render(request, 'editar_materia.html', {'form': form, 'materia': materia})
+
+    pass
 
 # def agregar_materias_produccion(request, produccion_id):
 #     if request.method == 'POST':
@@ -64,27 +110,6 @@ def mostrar_produccion(request):
 # Despues, eso pasa Envasado y seleccionamos el tipo de envasado
 # Despues pasa a producto terminado, y despues se salida de cliente
 # Por ultimo vemos el tema del envio si dejamos eso o no, pero lo tenemos ahi
-
-def eliminar_produccion(request):
-    if request.method == 'POST':
-        produccion = Produccion.objects.first()
-        if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
-            produccion.produccion_cantidad -= 1
-            produccion.save()
-
-            materias = Materias.objects.all()
-            for materia in materias:
-                materia.cantidad += 1
-                materia.save()
-                produccion.produccion_total -= materia.precio
-
-                produccion.save()
-
-                return redirect('produccion')
-        else: 
-            return redirect('produccion')
-    else:
-        return redirect('produccion')
 
 
 
