@@ -45,6 +45,7 @@ def editar_produccion(request, id):
     if request.method == 'POST':
 
         produccion = get_object_or_404(Produccion, pk=id)
+        cantidad = produccion.produccion_cantidad
         form = ProduccionForm(request.POST)
         if form.is_valid():
             produccion.nombre = form.cleaned_data['nombre']
@@ -61,15 +62,12 @@ def editar_produccion(request, id):
                 for materia in materias:
                     materia.cantidad -= produccion.produccion_cantidad
                     materia.save()
-
-                    
-                produccion.save()     
+                #messages.success(request, "Producción actualizada correctamente.")
+                produccion.produccion_cantidad += cantidad 
+                produccion.save()
+                return redirect('produccion')     
             else:
-                messages.warning(request, "No hay stock disponible")
-                
-            messages.success(request, "Producción actualizada correctamente.")
-            return redirect('produccion')
-
+                messages.warning(request, "No hay stock disponible")                                            
     else:
         form = ProduccionForm(initial={
             'nombre': produccion.nombre,
