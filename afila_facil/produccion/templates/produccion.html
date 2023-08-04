@@ -20,7 +20,7 @@
 
         <tbody>
 
-            {% for prod in produccion %}
+            {% for produccion in produccion %}
 
             <tr>
                 <td>
@@ -33,24 +33,24 @@
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
-                        <p class="fw-normal mb-1 fw-bold" >{{prod.nombre}}</p>
+                        <p class="fw-normal mb-1 fw-bold" >{{produccion.nombre}}</p>
                 </div>
                 
                 </td>
                 
                 <td>
-                    <p class="fw-normal mb-1">{{prod.produccion_cantidad}}</p>
+                    <p class="fw-normal mb-1">{{producciond.produccion_cantidad}}</p>
                 </td>
 
                 <td>
-                    <p class="fw-normal mb-1">$ {{prod.produccion_total}}</p>
+                    <p class="fw-normal mb-1">$ {{produccion.produccion_total}}</p>
                 </td>
 
                 {% if user.is_superuser %}
 
                 <td>
 
-                <form action="{% url 'editar_produccion' %}"  method="post" style="display: inline;" enctype="multipart/form-data">
+                <form action="{% url 'editar_produccion' id=produccion.id %}"  method="post" style="display: inline;" enctype="multipart/form-data">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                 </form>
