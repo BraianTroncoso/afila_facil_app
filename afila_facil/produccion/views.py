@@ -48,6 +48,7 @@ def editar_produccion(request, id):
         if form.is_valid():
             produccion.nombre = form.cleaned_data['nombre']
             produccion.cantidad = form.cleaned_data['cantidad']
+            produccion.save()
             return redirect('produccion')
     else:
         form = ProduccionForm(initial={
