@@ -19,6 +19,7 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
+
 # def agregar_materias_produccion(request, produccion_id):
 #     if request.method == 'POST':
 #         cantidad = request.POST.get('cantidad')
