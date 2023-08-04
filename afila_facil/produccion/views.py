@@ -87,26 +87,26 @@ def eliminar_produccion(request):
 
 
 
-def finalizar_todos_produccion(request):
-    if request.method == 'POST':
+# def finalizar_todos_produccion(request):
+#     if request.method == 'POST':
    
-        produccion = Produccion.objects.first()
-        materias = Materias.objects.all()
+#         produccion = Produccion.objects.first()
+#         materias = Materias.objects.all()
 
-        if produccion and produccion.materias:
-            while produccion.materias and produccion.produccion_cantidad > 0:
+#         if produccion and produccion.materias:
+#             while produccion.materias and produccion.produccion_cantidad > 0:
 
-                produccion.produccion_cantidad -= 1
-                produccion.save()
-                for materia in materias:
-                    materia.cantidad += 1
-                    materia.save()
-                    produccion.produccion_total -= materia.precio
+#                 produccion.produccion_cantidad -= 1
+#                 produccion.save()
+#                 for materia in materias:
+#                     materia.cantidad += 1
+#                     materia.save()
+#                     produccion.produccion_total -= materia.precio
 
-        produccion.save()
-        return redirect('produccion')
-    else:
-        return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
+#         produccion.save()
+#         return redirect('produccion')
+#     else:
+#         return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
                                       # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias  
                                       # También borré la instancia ya creada y se rompió todo  
 
