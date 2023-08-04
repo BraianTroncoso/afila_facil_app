@@ -44,16 +44,16 @@ def eliminar_produccion(request):
 def editar_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
     if request.method == 'POST':
-        form = ProduccionForm(request.POST, request.FILES)
+        form = ProduccionForm(request.POST)
         if form.is_valid():
             produccion.nombre = form.cleaned_data['nombre']
-            produccion.cantidad = form.cleaned_data['cantidad']
+            produccion.produccion_cantidad = form.cleaned_data['cantidad']
             produccion.save()
             return redirect('produccion')
     else:
         form = ProduccionForm(initial={
             'nombre': produccion.nombre,
-            'cantidad': produccion.cantidad,
+            'cantidad': produccion.produccion_cantidad,
         })
 
     return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
