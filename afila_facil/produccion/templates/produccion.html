@@ -39,7 +39,7 @@
                 </td>
                 
                 <td>
-                    <p class="fw-normal mb-1">{{producciond.produccion_cantidad}}</p>
+                    <p class="fw-normal mb-1">{{produccion.produccion_cantidad}}</p>
                 </td>
 
                 <td>
@@ -69,13 +69,13 @@
             {%endfor%}
 
         </tbody>
-        {%else%}
-
-    <p class="fw-normal mb-1">{{ mensaje }}</p>
+      
     </table> 
 
 
+    {%else%}
 
+    <p class="fw-normal mb-1">{{ mensaje }}</p>
 
 {%endif%}
 
