@@ -15,4 +15,4 @@ def nuevo_envasado(request):
         envasado = Envasado.objects.create(nombre=nombre)
         return redirect('envasado')
     else:
-        return render(request, 'nueva_produccion.html')
+        return render(request, 'nuevo_envasado.html')
