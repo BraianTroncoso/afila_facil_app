@@ -39,7 +39,7 @@ def eliminar_produccion(request, id):
                 materia.save()
             
             produccion.save()
-            messages.success(request, "Subproducto eliminado correctamente")
+            messages.success(request, "Sub producto eliminado correctamente")
         else:
             messages.error(request, "No es posible eliminar sino hay stock")
     else:
@@ -58,7 +58,7 @@ def editar_produccion(request, id):
             nueva_cantidad = form.cleaned_data['cantidad']
 
             if nueva_cantidad < 0:
-                messages.error(request, "La cantidad no puede ser negativa.")
+                messages.error(request, "La cantidad no puede ser negativa")
                 return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
 
             # Obtener las materias específicas que se van a modificar
