@@ -11,28 +11,28 @@
                     <div class="row">
                         <div class="form-outline w-100" >
                             <label class="form-label " for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" />
+                            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ proveedor.nombre }}"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-outline w-100">
                             <label class="form-label" for="apellido">Apellido:</label>
-                            <input type="text" id="apellido" name="apellido" class="form-control" />
+                            <input type="text" id="apellido" name="apellido" class="form-control" value="{{ proveedor.apellido }}"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-outline w-100">
                             <label class="form-label" for="direccion">Direccion:</label>
-                            <input type="text" id="direccion" name="direccion" class="form-control" />
+                            <input type="text" id="direccion" name="direccion" class="form-control" value="{{ proveedor.direccion }}"/>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="form-outline w-100">
                             <label class="form-label" for="telefono">Telefono: </label>
-                            <input type="number" id="telefono" name="telefono" class="form-control" />
+                            <input type="number" id="telefono" name="telefono" class="form-control" value="{{ proveedor.telefono }}"/>
                         </div>
                     </div>
 
@@ -40,14 +40,14 @@
                     <div class="row">
                         <div class="form-outline w-100">
                             <label class="form-label" for="email">Email:</label>
-                            <input type="text" id="email" name="email" class="form-control" />
+                            <input type="text" id="email" name="email" class="form-control" value="{{ proveedor.email }}"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-outline">
                             <label class="form-label fw-bold w-100" for="imagen">Seleccione una imagen:</label>
-                            <input type="file" id="imagen" name="imagen" class="form-control" />
+                            <input type="file" id="imagen" name="imagen" class="form-control" value="{{ proveedor.imagen }}"/>
                         </div>
                     </div>
                   

@@ -35,23 +35,27 @@ def eliminar_proveedor(request,id):
     return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Proveedores"})
 
 
-def editar_proveedor(request, id):
-    Proveedores.objects.filter(pk=id)
+def editar_proveedor(request,id):
+    proveedor = get_object_or_404(Proveedores, pk=id)
     if request.method == 'POST':
         form = ProveedoresForm(request.POST, request.FILES)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            apellido = form.cleaned_data['apellido']
-            direccion = form.cleaned_data['direccion']
-            telefono = form.cleaned_data['telefono']
-            email = form.cleaned_data['email']
-            imagen = form.cleaned_data['imagen']
-
-            proveedor = Proveedores(nombre=nombre, apellido=apellido,
-                                  direccion=direccion, telefono=telefono, email=email,
-                                  imagen=imagen)
+            proveedor.nombre = form.cleaned_data['nombre']
+            proveedor.apellido = form.cleaned_data['apellido']
+            proveedor.direccion = form.cleaned_data['direccion']
+            proveedor.telefono = form.cleaned_data['telefono']
+            proveedor.email = form.cleaned_data['email']
+            proveedor.imagen = form.cleaned_data['imagen']
             proveedor.save()
             return redirect('proveedores')
-        else:
-            form = ProveedoresForm()    
-    return render(request, 'editar_proveedor.html')
+    else:
+        form = ProveedoresForm(initial={
+        'nombre': proveedor.nombre,
+        'apellido': proveedor.apellido,
+        'direccion': proveedor.direccion,
+        'telefono':  proveedor.telefono,
+        'email': proveedor.email,
+        'imagen': proveedor.imagen
+        })
+    
+    return render(request, 'editar_proveedor.html', {'form': form, 'proveedor': proveedor})
