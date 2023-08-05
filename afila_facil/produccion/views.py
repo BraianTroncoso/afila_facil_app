@@ -19,23 +19,18 @@ def mostrar_produccion(request):
     return render(request, 'produccion.html', {'produccion': produccion, 'mensaje': "No hay Materias en Produccion"})
 
 
-def eliminar_produccion(request):
+def eliminar_produccion(request, id):
+    produccion = get_object_or_404(Produccion, pk=id)
     if request.method == 'POST':
-        produccion = Produccion.objects.first()
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
             produccion.produccion_cantidad -= 1
-            produccion.save()
-
             materias = Materias.objects.all()
             for materia in materias:
                 materia.cantidad += 1
-                materia.save()
                 produccion.produccion_total -= materia.precio
-
-                produccion.save()
-
-                return redirect('produccion')
-        else: 
+                materia.save()
+                
+            produccion.save()
             return redirect('produccion')
     else:
         return redirect('produccion')
