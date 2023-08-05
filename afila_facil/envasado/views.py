@@ -13,6 +13,6 @@ def nuevo_envasado(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         envasado = Envasado.objects.create(nombre=nombre)
-        return redirect('envasados')
+        return redirect('mostrar_envasado')
     else:
         return render(request, 'nuevo_envasado.html')
