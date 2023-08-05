@@ -42,37 +42,46 @@ def eliminar_produccion(request):
 
 
 def editar_produccion(request, id):
-    if request.method == 'POST':
+    produccion = get_object_or_404(Produccion, pk=id)
 
-        produccion = get_object_or_404(Produccion, pk=id)
-        cantidad = produccion.produccion_cantidad
-        total_actualizado = produccion.produccion_total
+    if request.method == 'POST':
         form = ProduccionForm(request.POST)
         if form.is_valid():
-            produccion.nombre = form.cleaned_data['nombre']
-            produccion.produccion_cantidad = form.cleaned_data['cantidad']
-            if produccion.produccion_cantidad < 0:
+            nueva_nombre = form.cleaned_data['nombre']
+            nueva_cantidad = form.cleaned_data['cantidad']
+
+            if nueva_cantidad < 0:
                 messages.error(request, "La cantidad no puede ser negativa.")
                 return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
+
             # Obtener las materias específicas que se van a modificar
             materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
             # Calcular el mínimo de cantidad de materias
             minimo_cantidad_materias = min(materia.cantidad for materia in materias)
+
             # Verificar si hay suficiente stock
-            if produccion.produccion_cantidad <= minimo_cantidad_materias:
+            if nueva_cantidad <= minimo_cantidad_materias:
+                # Calcular la diferencia entre la nueva cantidad y la cantidad anterior
+                diferencia_cantidad = nueva_cantidad - produccion.produccion_cantidad
+
                 # Actualizar las cantidades de las materias
                 for materia in materias:
-                    materia.cantidad -= produccion.produccion_cantidad
+                    materia.cantidad -= diferencia_cantidad
                     materia.save()
-                #messages.success(request, "Producción actualizada correctamente.")                       
-                if produccion.produccion_cantidad != cantidad:
-                    total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
-                    produccion.produccion_total += total
-                    produccion.produccion_cantidad += cantidad
+
+                # Actualizar la cantidad de producción con el nuevo valor
+                produccion.produccion_cantidad = nueva_cantidad
+                produccion.nombre = nueva_nombre
+
+                # Calcular y actualizar el total
+                total = sum(materia.precio * nueva_cantidad for materia in materias)
+                produccion.produccion_total = total
+
                 produccion.save()
-                return redirect('produccion')     
+
+                return redirect('produccion')
             else:
-                messages.warning(request, "No hay stock disponible")                                            
+                messages.warning(request, "No hay stock disponible")
     else:
         form = ProduccionForm(initial={
             'nombre': produccion.nombre,
@@ -80,6 +89,7 @@ def editar_produccion(request, id):
         })
 
     return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
+
 
 
 # def agregar_materias_produccion(request, produccion_id):
