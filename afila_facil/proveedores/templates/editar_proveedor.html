@@ -1,0 +1,70 @@
+{% extends "materias_primas/layout.html" %}
+{% load static %} 
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="d-flex flex-column align-items-center">
+            <h2 class="mb-3 mt-2">Editar Proveedor</h2>
+            <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
+                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'editar_proveedor' proveedor.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-outline w-100" >
+                            <label class="form-label " for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="direccion">Direccion:</label>
+                            <input type="text" id="direccion" name="direccion" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="telefono">Telefono: </label>
+                            <input type="number" id="telefono" name="telefono" class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-outline w-100">
+                            <label class="form-label" for="email">Email:</label>
+                            <input type="text" id="email" name="email" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold w-100" for="imagen">Seleccione una imagen:</label>
+                            <input type="file" id="imagen" name="imagen" class="form-control" />
+                        </div>
+                    </div>
+                  
+                    {% if request.user.is_superuser %}
+                    
+                    <div class="row mb-4">
+                        <div class="form-outline">
+                            <input type="hidden" name="super" value="True" />
+                            <input class="boton_enviar btn btn-outline-secondary mt-3" type="submit" value="Confirmar" id="btn_registrar" />
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
