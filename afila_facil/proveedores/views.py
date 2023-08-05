@@ -24,10 +24,10 @@ def nuevo_proveedor(request):
     return render(request, 'nuevo_proveedor.html')
 
 
-
 def mostrar_proveedores(request):
     proveedores = Proveedores.objects.all()
     return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Proveedores"})
+
 
 def eliminar_proveedor(request,id):
     Proveedores.objects.filter(pk=id).delete()
