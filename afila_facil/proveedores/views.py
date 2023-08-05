@@ -47,10 +47,10 @@ def editar_proveedor(request, id):
             email = form.cleaned_data['email']
             imagen = form.cleaned_data['imagen']
 
-            proveedores = Proveedores(nombre=nombre, apellido=apellido,
+            proveedor = Proveedores(nombre=nombre, apellido=apellido,
                                   direccion=direccion, telefono=telefono, email=email,
                                   imagen=imagen)
-            proveedores.save()
+            proveedor.save()
             return redirect('proveedores')
         else:
             form = ProveedoresForm()    
