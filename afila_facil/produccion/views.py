@@ -64,14 +64,17 @@ def editar_produccion(request, id):
                     materia.cantidad -= produccion.produccion_cantidad
                     materia.save()
                 #messages.success(request, "Producción actualizada correctamente.")
-
                 # VER VALIDACION PORQUE ME SUMA DE TODAS MANERAS EL TOTAL, CUANDO YO EDITO, NO NECESITO
-                # QUE ME SUME EL TOTAL DE ALGO QUE YA TENGO, OSEA, ESTA MAL LA LÓGICA
-                                                                              
+                # QUE ME SUME EL TOTAL DE ALGO QUE YA TENGO, OSEA, ESTA MAL LA LÓGICA                                
                 if produccion.produccion_cantidad != cantidad:
                     total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
                     produccion.produccion_total += total
                     produccion.produccion_cantidad += cantidad
+
+                # if produccion.produccion_cantidad < cantidad:
+                #     total = sum(materia.precio * produccion.produccion_cantidad for materia in materias)
+                #     produccion.produccion_total -= total  # Resta el valor de total en lugar de sumarlo
+                #     produccion.produccion_cantidad -= cantidad
 
                 produccion.save()
                 return redirect('produccion')     
