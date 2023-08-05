@@ -9,3 +9,10 @@ def mostrar_envasado(request):
     envasado = Envasado.objects.all()
     return render(request, 'mostrar_envasado.html', {'envasado': envasado, 'mensaje': "No hay Tipo de envasado disponible"})
 
+def nuevo_envasado(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        envasado = Envasado.objects.create(nombre=nombre)
+        return redirect('envasado')
+    else:
+        return render(request, 'nueva_produccion.html')
