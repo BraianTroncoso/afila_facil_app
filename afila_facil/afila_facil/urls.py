@@ -11,7 +11,8 @@ urlpatterns = [
     path('login/', RedirectView.as_view(url=reverse_lazy('login'), permanent=False)),
     path('', include('usuarios.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
-    path('proveedores/', include('proveedores.urls'))
+    path('proveedores/', include('proveedores.urls')),
+    path('envasados/', include('envasado.urls'))
 ]
 
 if settings.DEBUG:
