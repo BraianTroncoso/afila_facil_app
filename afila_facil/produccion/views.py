@@ -21,19 +21,31 @@ def mostrar_produccion(request):
 
 def eliminar_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
+
     if request.method == 'POST':
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
+            # Restamos una unidad de producción
             produccion.produccion_cantidad -= 1
-            materias = Materias.objects.all()
+            
+            # Obtenemos las materias específicas que se van a modificar
+            materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
+            
+            # Reducimos el total de producción en el precio de la materia
+            produccion.produccion_total -= sum(materia.precio for materia in materias)
+            
+            # Actualizamos las cantidades de las materias sumándoles una unidad
             for materia in materias:
                 materia.cantidad += 1
-                produccion.produccion_total -= materia.precio
                 materia.save()
-                
+            
             produccion.save()
-            return redirect('produccion')
+            messages.success(request, "Subproducto eliminado correctamente")
+        else:
+            messages.error(request, "No es posible eliminar sino hay stock")
     else:
         return redirect('produccion')
+    
+    return redirect('produccion')
 
 
 def editar_produccion(request, id):
