@@ -15,5 +15,3 @@ class Produccion(models.Model):
     def __str__(self):
         return f"{self.producto_completo}"
 
-
-
