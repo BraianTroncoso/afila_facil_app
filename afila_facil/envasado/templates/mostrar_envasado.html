@@ -59,7 +59,10 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </form>
-
+                <form action="#" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-rounded btn-success">Agregar cantidad</button>
+                </form>
             </td>
 
             {%endif%}
