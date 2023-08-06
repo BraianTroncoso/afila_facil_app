@@ -108,7 +108,7 @@ def agregar_materias_produccion(request, id):
         form = ProduccionCantidadForm(request.POST)
         if form.is_valid():
             nueva_cantidad = form.cleaned_data['cantidad']
-
+            nueva_cantidad += produccion.produccion_cantidad
             if nueva_cantidad < 0:
                 messages.error(request, "La cantidad no puede ser negativa")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
