@@ -102,10 +102,18 @@ def editar_produccion(request, id):
     return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
 
 
-def agregar_materias_produccion(request, produccion_id):
+def agregar_materias_produccion(request, id):
+    produccion = get_object_or_404(Produccion, pk=id)
     if request.method == 'POST':
-        cantidad = request.POST.get('cantidad')
-        materias = Materias.objects.all()
+        form = ProduccionForm(request.POST)
+        if form.is_valid():
+            nueva_cantidad = form.cleaned_data['cantidad']
+
+            if nueva_cantidad < 0:
+                messages.error(request, "La cantidad no puede ser negativa")
+                return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+
+            materias = Materias.objects.all()
 
     if cantidad is not None and cantidad != '' and int(cantidad) > 0:
         cantidad = int(cantidad)
@@ -142,33 +150,5 @@ def agregar_materias_produccion(request, produccion_id):
     # else:
     #     return redirect('agregar_materias_produccion')
 
-# Realizar nuevamente la funcion de 0, dejar esta de guia. Crear un form como en los demas casos, despues adaparlo porque sino estoy copiando
-# Y haciendo cualquier cosa, primero voy hacer que funcione después vemos lo demas.
-# En produccion voy a tener Sub producto en donde solo por ahora iria el Afilador
-# Despues, eso pasa Envasado y seleccionamos el tipo de envasado
-# Despues pasa a producto terminado, y despues se salida de cliente
-# Por ultimo vemos el tema del envio si dejamos eso o no, pero lo tenemos ahi
 
 
-# def finalizar_todos_produccion(request):
-#     if request.method == 'POST':
-
-#         produccion = Produccion.objects.first()
-#         materias = Materias.objects.all()
-
-#         if produccion and produccion.materias:
-#             while produccion.materias and produccion.produccion_cantidad > 0:
-
-#                 produccion.produccion_cantidad -= 1
-#                 produccion.save()
-#                 for materia in materias:
-#                     materia.cantidad += 1
-#                     materia.save()
-#                     produccion.produccion_total -= materia.precio
-
-#         produccion.save()
-#         return redirect('produccion')
-#     else:
-#         return redirect('produccion') # Bug cuando se finaliza no queda el valor 0 - no hace nada
-    # Es un bug gral, estaria descontando sobre el primer obj en vez de todas las materias
-    # También borré la instancia ya creada y se rompió todo
