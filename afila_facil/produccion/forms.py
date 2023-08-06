@@ -6,4 +6,4 @@ class ProduccionForm(forms.Form):
     cantidad = forms.IntegerField() #min_value=0 si lo dejo no emitira mensaje
 
 class ProduccionCantidadForm(forms.Form):
-    cantidad = forms.IntegerField(min_value=0) #min_value=0 si lo dejo no emitira mensaje
+    cantidad = forms.IntegerField() #min_value=0 si lo dejo no emitira mensaje
