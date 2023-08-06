@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Produccion
 from materias_primas.models import Materias
 from django.contrib import messages
-from .forms import ProduccionForm
+from .forms import ProduccionForm, ProduccionCantidadForm
 
 
 def nueva_produccion(request):
@@ -102,46 +102,10 @@ def editar_produccion(request, id):
     return render(request, 'editar_produccion.html', {'form': form, 'produccion': produccion})
 
 
-# def agregar_materias_produccion(request, id):
-#     produccion = get_object_or_404(Produccion, pk=id)
-#     if request.method == 'POST':
-#         form = ProduccionForm(request.POST)
-#         if form.is_valid():
-#             nueva_cantidad = form.cleaned_data['cantidad']
-
-#             if nueva_cantidad < 0:
-#                 messages.error(request, "La cantidad no puede ser negativa")
-#                 return redirect('produccion') 
-#             else:
-#                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
-
-#             materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
-#             # Calcular el mínimo de cantidad de materias
-#             minimo_cantidad_materias = min(
-#                 materia.cantidad for materia in materias)
-      
-#             if nueva_cantidad <= minimo_cantidad_materias:
-#                 for materia in materias:
-#                     materia.cantidad -= nueva_cantidad 
-#                     materia.save()
-#                 produccion.produccion_cantidad = nueva_cantidad
-#                 # Calcular y actualizar el total
-#                 total = sum(materia.precio *
-#                             nueva_cantidad for materia in materias)
-#                 produccion.produccion_total = total
-#                 produccion.save()
-#             else:
-#                 messages.warning(request, "No hay stock disponible")
-#                 return redirect('agregar_materias_produccion') 
-#     else:
-#         return redirect('produccion')
-
-
-
 def agregar_materias_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
     if request.method == 'POST':
-        form = ProduccionForm(request.POST)
+        form = ProduccionCantidadForm(request.POST)
         if form.is_valid():
             nueva_cantidad = form.cleaned_data['cantidad']
 
@@ -166,7 +130,8 @@ def agregar_materias_produccion(request, id):
                 return redirect('produccion')  # Agregamos el return aquí
             else:
                 messages.warning(request, "No hay stock disponible")
-                return redirect('agregar_materias_produccion')  # Agregamos el return aquí
+                return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+ # Agregamos el return aquí
         else:
             # Si el formulario no es válido, mostramos el formulario nuevamente con los errores
             return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
