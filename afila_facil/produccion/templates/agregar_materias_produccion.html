@@ -9,22 +9,15 @@
           <h2 class="mb-3 mt-2">Agregar Produccion</h2>
           <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
 
-            <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'agregar_materias_cantidad' produccion.id %}"  enctype="multipart/form-data">
+            <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'agregar_materias_produccion' produccion.id %}"  enctype="multipart/form-data">
               {% csrf_token %}
-              <div class="row">
-                  <div class="form-outline w-100">
-                    <label class="form-label" for="nombre">Nombre Produccion:</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" value="{{ produccion.nombre }}" />
-                  </div>
-              </div>
-
-
-                <div class="row mb-4">
-                    <div class="form-outline w-100">
+              
+              <div class="row mb-4">
+                <div class="form-outline w-100">
                     <label class="form-label" for="cantidad">Cantidad: </label>
-                    <input type="number" id="cantidad" name="cantidad" class="form-control" value="{{ produccion.produccion_cantidad }}"/>
-                    </div>
+                    <input type="number" id="cantidad" name="cantidad" class="form-control" />
                 </div>
+            </div>
 
                 {% if request.user.is_superuser %}
 
