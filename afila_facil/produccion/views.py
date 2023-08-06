@@ -135,6 +135,9 @@ def agregar_materias_produccion(request, id):
             # Si el formulario no es válido, mostramos el formulario nuevamente con los errores
             return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
     else:
-        return redirect('produccion')
+        form = ProduccionCantidadForm(initial={
+            'cantidad': produccion.produccion_cantidad
+        })
+    return redirect('produccion')
 
 # LLegan los datos, los carga, el problema ahora es que no los sumas y no me sale un mensaje mostrando que el valor es negativo
