@@ -133,7 +133,7 @@ def agregar_materias_produccion(request, id):
                 messages.warning(request, "No hay stock disponible")
                 return redirect('agregar_materias_produccion') 
     else:
-        return redirect('agregar_materias_produccion')
+        return redirect('produccion')
 
 
 
