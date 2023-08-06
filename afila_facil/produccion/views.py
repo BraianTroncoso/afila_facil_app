@@ -131,9 +131,10 @@ def agregar_materias_produccion(request, id):
             else:
                 messages.warning(request, "No hay stock disponible")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
- # Agregamos el return aquí
         else:
             # Si el formulario no es válido, mostramos el formulario nuevamente con los errores
             return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
     else:
         return redirect('produccion')
+
+# LLegan los datos, los carga, el problema ahora es que no los sumas y no me sale un mensaje mostrando que el valor es negativo
