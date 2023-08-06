@@ -113,42 +113,27 @@ def agregar_materias_produccion(request, id):
                 messages.error(request, "La cantidad no puede ser negativa")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
 
-            materias = Materias.objects.all()
-
-    if cantidad is not None and cantidad != '' and int(cantidad) > 0:
-        cantidad = int(cantidad)
+            # Obtener las materias específicas que se van a modificar
+            materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
+            # Calcular el mínimo de cantidad de materias
+            minimo_cantidad_materias = min(
+                materia.cantidad for materia in materias)
+      
+            if nueva_cantidad <= minimo_cantidad_materias:
+                for materia in materias:
+                    materia.cantidad -= nueva_cantidad 
+                    materia.save()
+                produccion.produccion_cantidad = nueva_cantidad
+                # Calcular y actualizar el total
+                total = sum(materia.precio *
+                            nueva_cantidad for materia in materias)
+                produccion.produccion_total = total
+                produccion.save()
+            else:
+                messages.warning(request, "No hay stock disponible")
+                return redirect('agregar_materias_produccion') 
     else:
-        cantidad = 0
         return redirect('agregar_materias_produccion')
-        minimo_cantidad_materias = min(
-            materia.cantidad for materia in materias)
-
-        if cantidad <= minimo_cantidad_materias:
-            for materia in materias:
-                materia.cantidad -= cantidad
-                materia.save()
-        else:
-            messages.warning(request, "No hay stock disponible")
-            return redirect('agregar_materias_produccion')
-
-        produccion = Produccion.objects.get(id=produccion_id)
-
-        produccion.produccion_cantidad += cantidad
-        produccion.save()
-
-        total = sum(materia.precio * cantidad for materia in materias)
-        produccion.produccion_total += total
-        produccion.save()
-
-        if cantidad > 1:
-            mensaje = "{} Producciones agregadas correctamente".format(
-                cantidad)
-        if cantidad == 1:
-            mensaje = "{} Produccion agregada correctamente".format(cantidad)
-        messages.success(request, mensaje)
-        return redirect('agregar_materias_produccion')
-    # else:
-    #     return redirect('agregar_materias_produccion')
 
 
 
