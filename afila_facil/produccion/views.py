@@ -138,6 +138,7 @@ def agregar_materias_produccion(request, id):
         form = ProduccionCantidadForm(initial={
             'cantidad': produccion.produccion_cantidad
         })
-    return redirect('produccion')
+    return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+
 
 # LLegan los datos, los carga, el problema ahora es que no los sumas y no me sale un mensaje mostrando que el valor es negativo
