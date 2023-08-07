@@ -125,10 +125,13 @@ def agregar_materias_produccion(request, id):
             # Calcular el mínimo de cantidad de materias
             minimo_cantidad_materias = min(materia.cantidad for materia in  materias_seleccionadas)
       
-            if nueva_cantidad <= minimo_cantidad_materias:
-                for materia in materias_seleccionadas:
+            for materia in materias_seleccionadas:
+                if materia.cantidad >= nueva_cantidad:
                     materia.cantidad -= nueva_cantidad 
                     materia.save()
+                else:
+                    messages.warning(request, f"No hay suficiente stock de {materia.nombre}")
+
                 produccion.produccion_cantidad = nueva_cantidad
                 # Calcular y actualizar el total
                 total = sum(materia.precio * nueva_cantidad for materia in materias_seleccionadas)
