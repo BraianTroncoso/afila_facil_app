@@ -117,6 +117,10 @@ def agregar_materias_produccion(request, id):
             ids_seleccionados = form.cleaned_data['materias_seleccionadas']
             # Ahora puedes usar estos IDs para realizar cualquier acción que necesites
             # Por ejemplo, obtener las materias seleccionadas:
+            if ids_seleccionados is None:
+                messages.error(request, "Tiene que seleccionar alguna materia prima")
+                return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+            
             materias_seleccionadas = Materias.objects.filter(id__in=ids_seleccionados)
             # Calcular el mínimo de cantidad de materias
             minimo_cantidad_materias = min(materia.cantidad for materia in  materias_seleccionadas)
