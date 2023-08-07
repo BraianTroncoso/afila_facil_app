@@ -21,4 +21,4 @@ class Proveedores(models.Model):
         verbose_name = "Proveedores"
 
     def __str__(self):
-        return f"{self.nombre}  {self.apellido}" 
+        return f"{self.nombre}" 
