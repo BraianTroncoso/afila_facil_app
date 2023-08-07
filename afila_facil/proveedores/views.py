@@ -8,13 +8,13 @@ def nuevo_proveedor(request):
         form = ProveedoresForm(request.POST, request.FILES)
         if form.is_valid():
             nombre = form.cleaned_data['nombre']
-            apellido = form.cleaned_data['apellido']
+            detalle = form.cleaned_data['detalle']
             direccion = form.cleaned_data['direccion']
             telefono = form.cleaned_data['telefono']
             email = form.cleaned_data['email']
             imagen = form.cleaned_data['imagen']
 
-            proveedores = Proveedores(nombre=nombre, apellido=apellido,
+            proveedores = Proveedores(nombre=nombre, detalle=detalle,
                                   direccion=direccion, telefono=telefono, email=email,
                                   imagen=imagen)
             proveedores.save()
@@ -41,7 +41,7 @@ def editar_proveedor(request,id):
         form = ProveedoresForm(request.POST, request.FILES)
         if form.is_valid():
             proveedor.nombre = form.cleaned_data['nombre']
-            proveedor.apellido = form.cleaned_data['apellido']
+            proveedor.detalle = form.cleaned_data['detalle']
             proveedor.direccion = form.cleaned_data['direccion']
             proveedor.telefono = form.cleaned_data['telefono']
             proveedor.email = form.cleaned_data['email']
@@ -51,7 +51,7 @@ def editar_proveedor(request,id):
     else:
         form = ProveedoresForm(initial={
         'nombre': proveedor.nombre,
-        'apellido': proveedor.apellido,
+        'apellido': proveedor.detalle,
         'direccion': proveedor.direccion,
         'telefono':  proveedor.telefono,
         'email': proveedor.email,
