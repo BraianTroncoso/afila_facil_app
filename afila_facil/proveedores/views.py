@@ -51,7 +51,7 @@ def editar_proveedor(request,id):
     else:
         form = ProveedoresForm(initial={
         'nombre': proveedor.nombre,
-        'apellido': proveedor.detalle,
+        'detalle': proveedor.detalle,
         'direccion': proveedor.direccion,
         'telefono':  proveedor.telefono,
         'email': proveedor.email,
