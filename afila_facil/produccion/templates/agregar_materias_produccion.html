@@ -19,9 +19,15 @@
                 </div>
             </div>
 
+          
+          
                 {% if request.user.is_superuser %}
 
                 <div class="campos_forms">
+                  <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </form>
                   <input type="hidden" name="super" value="True"/>
                   <input class="boton_enviar btn btn-outline-secondary" type="submit" value="Confirmar"  id="btn_registrar"/>
                 </div>

@@ -114,17 +114,20 @@ def agregar_materias_produccion(request, id):
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
 
             # Obtener las materias específicas que se van a modificar
-            materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
+            ids_seleccionados = form.cleaned_data['materias_seleccionadas']
+            # Ahora puedes usar estos IDs para realizar cualquier acción que necesites
+            # Por ejemplo, obtener las materias seleccionadas:
+            materias_seleccionadas = Materias.objects.filter(id__in=ids_seleccionados)
             # Calcular el mínimo de cantidad de materias
-            minimo_cantidad_materias = min(materia.cantidad for materia in materias)
+            minimo_cantidad_materias = min(materia.cantidad for materia in  materias_seleccionadas)
       
             if nueva_cantidad <= minimo_cantidad_materias:
-                for materia in materias:
+                for materia in materias_seleccionadas:
                     materia.cantidad -= nueva_cantidad 
                     materia.save()
                 produccion.produccion_cantidad = nueva_cantidad
                 # Calcular y actualizar el total
-                total = sum(materia.precio * nueva_cantidad for materia in materias)
+                total = sum(materia.precio * nueva_cantidad for materia in materias_seleccionadas)
                 produccion.produccion_total = total
                 produccion.save()
                 return redirect('produccion')  # Agregamos el return aquí
