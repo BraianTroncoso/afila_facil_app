@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Proveedores(models.Model):
     nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
+    detalle = models.CharField(max_length=200)
     direccion = models.CharField(max_length=100)
     telefono = models.IntegerField(null=True, blank=True)
     email = models.CharField(max_length=100)

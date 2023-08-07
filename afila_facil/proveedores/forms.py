@@ -3,7 +3,7 @@ from .models import Proveedores
     
 class ProveedoresForm(forms.Form):
     nombre = forms.CharField(max_length=100, required=True)
-    apellido = forms.CharField(max_length=100, required=True)
+    detalle = forms.CharField(max_length=200, required=False)
     direccion = forms.CharField(max_length=100, required=True)
     telefono = forms.CharField(max_length=100, required=True)
     email = forms.CharField(max_length=100, required=True)
