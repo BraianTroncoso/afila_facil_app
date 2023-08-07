@@ -104,51 +104,47 @@ def editar_produccion(request, id):
 
 def agregar_materias_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
+
     if request.method == 'POST':
         form = ProduccionCantidadForm(request.POST)
         if form.is_valid():
             nueva_cantidad = form.cleaned_data['cantidad']
             nueva_cantidad += produccion.produccion_cantidad
+
             if nueva_cantidad < 0:
                 messages.error(request, "La cantidad no puede ser negativa")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
 
-            # Obtener las materias específicas que se van a modificar
             ids_seleccionados = form.cleaned_data['materias_seleccionadas']
-            # Ahora puedes usar estos IDs para realizar cualquier acción que necesites
-            # Por ejemplo, obtener las materias seleccionadas:
-            if ids_seleccionados is None:
+
+            if not ids_seleccionados:
                 messages.error(request, "Tiene que seleccionar alguna materia prima")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
-            
+
             materias_seleccionadas = Materias.objects.filter(id__in=ids_seleccionados)
-            # Calcular el mínimo de cantidad de materias
-            minimo_cantidad_materias = min(materia.cantidad for materia in  materias_seleccionadas)
-      
-            for materia in materias_seleccionadas:
-                if materia.cantidad >= nueva_cantidad:
-                    materia.cantidad -= nueva_cantidad 
-                    materia.save()
-                else:
-                    messages.warning(request, f"No hay suficiente stock de {materia.nombre}")
+            minimo_cantidad_materias = min(materia.cantidad for materia in materias_seleccionadas)
+
+            if nueva_cantidad <= minimo_cantidad_materias:
+                for materia in materias_seleccionadas:
+                    if materia.cantidad >= nueva_cantidad:
+                        materia.cantidad -= nueva_cantidad 
+                        materia.save()
+                    else:
+                        messages.warning(request, f"No hay suficiente stock de {materia.nombre}")
 
                 produccion.produccion_cantidad = nueva_cantidad
-                # Calcular y actualizar el total
                 total = sum(materia.precio * nueva_cantidad for materia in materias_seleccionadas)
                 produccion.produccion_total = total
                 produccion.save()
-                return redirect('produccion')  # Agregamos el return aquí
+                return redirect('produccion')
             else:
-                messages.warning(request, "No hay stock disponible")
-                return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+                messages.warning(request, "No hay suficiente stock disponible")
         else:
-            # Si el formulario no es válido, mostramos el formulario nuevamente con los errores
             return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
     else:
         form = ProduccionCantidadForm(initial={
             'cantidad': produccion.produccion_cantidad
         })
+
     return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
-
-
 # LLegan los datos, los carga, el problema ahora es que no los sumas y no me sale un mensaje mostrando que el valor es negativo
