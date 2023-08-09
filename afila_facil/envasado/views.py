@@ -16,3 +16,6 @@ def nuevo_envasado(request):
         return redirect('mostrar_envasado')
     else:
         return render(request, 'nuevo_envasado.html')
+
+def agregar_sub_producto(request):
+    return render(request, 'agregar_sub_producto.html')        
