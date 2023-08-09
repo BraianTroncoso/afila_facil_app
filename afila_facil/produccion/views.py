@@ -122,6 +122,11 @@ def agregar_materias_produccion(request, id):
             ids_seleccionados = form.cleaned_data['materias_seleccionadas']
             print("IDs seleccionados:", ids_seleccionados)
             
+            # if nueva_cantidad and not ids_seleccionados:
+            #     print("Mensaje de error generado")
+            #     return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
+
+
             if not ids_seleccionados:
                 messages.error(request, "Tiene que seleccionar alguna materia prima")
                 print("Mensaje de error generado")
