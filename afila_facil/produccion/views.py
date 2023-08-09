@@ -109,7 +109,7 @@ def agregar_materias_produccion(request, id):
         form = ProduccionCantidadForm(request.POST)
         if form.is_valid():
             nueva_cantidad = form.cleaned_data['cantidad']
-            nueva_cantidad += produccion.produccion_cantidad
+          
 
             if nueva_cantidad < 0:
                 messages.error(request, "La cantidad no puede ser negativa")
@@ -131,7 +131,8 @@ def agregar_materias_produccion(request, id):
                         materia.save()
                     else:
                         messages.warning(request, f"No hay suficiente stock de {materia.nombre}")
-
+                
+                nueva_cantidad += produccion.produccion_cantidad
                 produccion.produccion_cantidad = nueva_cantidad
                 total = sum(materia.precio * nueva_cantidad for materia in materias_seleccionadas)
                 produccion.produccion_total = total
