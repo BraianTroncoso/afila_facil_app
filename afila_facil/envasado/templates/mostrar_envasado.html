@@ -54,7 +54,7 @@
 
                 <td>
 
-                <form action="{% url 'agregar_sub_producto' %}" method="post" style="display: inline;" enctype="multipart/form-data">
+                <form action="#" method="post" style="display: inline;" enctype="multipart/form-data">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-info btn-sm btn-rounded">Editar</button>
                 </form>
@@ -63,7 +63,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </form>
-                <form action="#" method="post" style="display: inline;">
+                <form action="{% url 'agregar_sub_producto' %}"method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-success">Agregar sub producto</button>
                 </form>
