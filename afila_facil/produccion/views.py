@@ -120,9 +120,11 @@ def agregar_materias_produccion(request, id):
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
 
             ids_seleccionados = form.cleaned_data['materias_seleccionadas']
-
+            print("IDs seleccionados:", ids_seleccionados)
+            
             if not ids_seleccionados:
                 messages.error(request, "Tiene que seleccionar alguna materia prima")
+                print("Mensaje de error generado")
                 return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
 
             materias_seleccionadas = Materias.objects.filter(id__in=ids_seleccionados)
@@ -152,4 +154,3 @@ def agregar_materias_produccion(request, id):
         })
 
     return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
-# LLegan los datos, los carga, el problema ahora es que no los sumas y no me sale un mensaje mostrando que el valor es negativo
