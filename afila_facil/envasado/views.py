@@ -37,6 +37,7 @@ def agregar_sub_producto(request, id):
             ids_seleccionados = form.cleaned_data['produccion_seleccionada']
 
             produccion_seleccionada = Produccion.objects.filter(id__in=ids_seleccionados)
+            nuevo_valor = 100
             
             for produccion in produccion_seleccionada:
                 if produccion.produccion_cantidad >= nueva_cantidad:
@@ -47,6 +48,8 @@ def agregar_sub_producto(request, id):
                     return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
             envasado.cantidad += nueva_cantidad
+            total = sum(produccion.produccion_total * nuevo_valor for produccion in produccion_seleccionada)
+            envasado.total = total    
             envasado.save()
 
             return redirect('mostrar_envasado')
