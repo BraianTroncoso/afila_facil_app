@@ -13,5 +13,5 @@ class Produccion(models.Model):
         verbose_name = "Produccion"
 
     def __str__(self):
-        return f"{self.producto_completo}"
+        return f"{self.nombre}"
 
