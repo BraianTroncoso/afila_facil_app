@@ -37,14 +37,15 @@ def agregar_sub_producto(request, id):
             ids_seleccionados = form.cleaned_data['produccion_seleccionada']
 
             produccion_seleccionada = Produccion.objects.filter(id__in=ids_seleccionados)
-
+            
             for produccion in produccion_seleccionada:
                 if produccion.produccion_cantidad >= nueva_cantidad:
                     produccion.produccion_cantidad -= nueva_cantidad
                     produccion.save()
                 else:
                     messages.warning(request, f"No hay suficiente stock de {produccion.nombre}")
-            
+                    return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
+
             envasado.cantidad += nueva_cantidad
             envasado.save()
 
