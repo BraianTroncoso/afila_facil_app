@@ -37,8 +37,8 @@ def agregar_sub_producto(request, id):
             ids_seleccionados = form.cleaned_data['produccion_seleccionada']
 
             produccion_seleccionada = Produccion.objects.filter(id__in=ids_seleccionados)
-            nuevo_valor = 100
             
+
             for produccion in produccion_seleccionada:
                 if produccion.produccion_cantidad >= nueva_cantidad:
                     produccion.produccion_cantidad -= nueva_cantidad
@@ -48,6 +48,8 @@ def agregar_sub_producto(request, id):
                     return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
             envasado.cantidad += nueva_cantidad
+            nuevo_valor = 100
+            # Cuando haga la vista de editar se le va a poder cambiar el valor del total, acá esta hardcodeada
             total = sum(produccion.produccion_total * nuevo_valor for produccion in produccion_seleccionada)
             envasado.total = total    
             envasado.save()

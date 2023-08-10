@@ -145,6 +145,7 @@ def agregar_materias_produccion(request, id):
                 
                 nueva_cantidad += produccion.produccion_cantidad
                 produccion.produccion_cantidad = nueva_cantidad
+                
                 total = sum(materia.precio * nueva_cantidad for materia in materias_seleccionadas)
                 produccion.produccion_total = total
                 produccion.save()
