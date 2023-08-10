@@ -39,19 +39,21 @@ def agregar_sub_producto(request, id):
                 return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
             valor_produccion = 0
-            
+                
             if produccion_seleccionada.produccion_cantidad >= nueva_cantidad:
-                produccion_seleccionada.produccion_cantidad -= nueva_cantidad
-                valor_produccion += produccion_seleccionada.produccion_total  # Acumular el valor total
-                produccion_seleccionada.produccion_total -= (produccion_seleccionada.produccion_total * nueva_cantidad)
+                if produccion_seleccionada.produccion_cantidad > 0:
+                    produccion_seleccionada.produccion_cantidad -= nueva_cantidad
+                    proporcion_descuento = (nueva_cantidad / produccion_seleccionada.produccion_cantidad)
+                    descuento_valor = produccion_seleccionada.produccion_total * proporcion_descuento
+                    produccion_seleccionada.produccion_total -= descuento_valor
                 produccion_seleccionada.save()
 
                 envasado.cantidad += nueva_cantidad
                 envasado.produccion = produccion_seleccionada
-                envasado.total += (valor_produccion * nuevo_valor)
+                envasado.total += (descuento_valor * nuevo_valor)
                 envasado.save()
                 return redirect('mostrar_envasado')
-                # Cuando haga la vista de editar se le va a poder cambiar el valor del total, acá esta hardcodeada
+                    # Cuando haga la vista de editar se le va a poder cambiar el valor del total, acá esta hardcodeada
 
             else:
                 messages.warning(request, f"No hay suficiente stock de {produccion_seleccionada.nombre}")
