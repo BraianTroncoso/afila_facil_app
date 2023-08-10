@@ -42,6 +42,7 @@ def agregar_sub_producto(request, id):
             for produccion in produccion_seleccionada:
                 if produccion.produccion_cantidad >= nueva_cantidad:
                     produccion.produccion_cantidad -= nueva_cantidad
+                    produccion.produccion_total -= produccion.produccion_total
                     produccion.save()
                 else:
                     messages.warning(request, f"No hay suficiente stock de {produccion.nombre}")
