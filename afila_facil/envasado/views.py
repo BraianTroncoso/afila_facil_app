@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Envasado
 from produccion.models import Produccion
 from django.contrib import messages
+from .forms import EnvasadoForm
 
 
 # Create your views here.
