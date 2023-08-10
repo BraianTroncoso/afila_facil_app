@@ -63,7 +63,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </form>
-                <form action="{% url 'agregar_sub_producto' %}"method="post" style="display: inline;">
+                <form action="{% url 'agregar_sub_producto' env.id %}"method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-rounded btn-success">Agregar sub producto</button>
                 </form>
