@@ -18,5 +18,42 @@ def nuevo_envasado(request):
     else:
         return render(request, 'nuevo_envasado.html')
 
-def agregar_sub_producto(request):
-    return render(request, 'agregar_sub_producto.html')        
+def agregar_sub_producto(request, id):
+    envasado = get_object_or_404(Envasado, pk=id)
+    produccion = Produccion.objects.all()
+    if request.method == 'POST':
+        form = EnvasadoForm(request.POST)
+        if form.is_valid():
+            nueva_cantidad = form.cleaned_data['cantidad']
+
+            if nueva_cantidad == 0:
+                messages.error(request, "No puede ingresar 0 sub producto")
+                return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
+
+            if nueva_cantidad < 0:
+                messages.error(request, "La cantidad no puede ser negativa")
+                return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
+
+            ids_seleccionados = form.cleaned_data['produccion_seleccionada']
+
+            produccion_seleccionada = Produccion.objects.filter(id__in=ids_seleccionados)
+
+            if nueva_cantidad <= produccion.produccion_cantidad:
+                for produccion in produccion_seleccionada:
+                    if produccion.produccion_cantidad >= nueva_cantidad:
+                        produccion.produccion_cantidad -= nueva_cantidad 
+                        produccion.save()
+                    else:
+                        messages.warning(request, f"No hay suficiente stock de {produccion.nombre}")
+                
+                nueva_cantidad += envasado.cantidad
+                return redirect('mostrar_envasado')
+            else:
+                messages.warning(request, "No hay suficiente stock disponible")
+        else:
+            form = EnvasadoForm(initial={
+                'cantidad': envasado.cantidad
+            })
+        return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
+
+       
