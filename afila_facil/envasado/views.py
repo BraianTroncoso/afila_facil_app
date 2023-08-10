@@ -37,9 +37,7 @@ def agregar_sub_producto(request, id):
                 messages.error(request, "La cantidad no puede ser negativa")
                 return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
-            
             valor_produccion = 0
-            
             
             if produccion_seleccionada.produccion_cantidad >= nueva_cantidad:
                 produccion_seleccionada.produccion_cantidad -= nueva_cantidad
