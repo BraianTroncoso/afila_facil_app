@@ -26,6 +26,7 @@ def agregar_sub_producto(request, id):
         if form.is_valid():
             nueva_cantidad = form.cleaned_data['cantidad']
             nuevo_valor = form.cleaned_data['nuevo_valor']
+            #if not envasado.produccion:
             produccion_id = form.cleaned_data['produccion_seleccionada']
             produccion_seleccionada = Produccion.objects.get(id=produccion_id)
             

@@ -13,25 +13,21 @@
                             <label class="form-label" for="cantidad">Cantidad: </label>
                             <input type="number" id="cantidad" name="cantidad" class="form-control" value="{{ envasado.cantidad }}"/>
                         </div>
-                        {% if not envasado.produccion %}
                         <div class="form-outline w-100">
                             <label class="form-label" for="nuevo_valor">Precio de venta: </label>
                             <input type="number" id="nuevo_valor" name="nuevo_valor" class="form-control" value="{{ envasado.cantidad }}"/>
                         </div>
-                        {% endif %}
                     </div>
 
                     {% if request.user.is_superuser %}
-                        {% if not envasado.produccion %}
-                            <div class="campos_forms">
-                                <div class="form-group">
-                                    <label for="{{ form.produccion_seleccionada.id_for_label }}">{{ form.produccion_seleccionada.label }}</label>
-                                    {{ form.produccion_seleccionada }}
-                                </div>
-                                <input type="hidden" name="super" value="True"/>
-                                <input class="boton_enviar btn btn-outline-secondary" type="submit" value="Confirmar"  id="btn_registrar"/>
+                        <div class="campos_forms">
+                            <div class="form-group">
+                                <label for="{{ form.produccion_seleccionada.id_for_label }}">{{ form.produccion_seleccionada.label }}</label>
+                                {{ form.produccion_seleccionada }}
                             </div>
-                        {% endif %}
+                            <input type="hidden" name="super" value="True"/>
+                            <input class="boton_enviar btn btn-outline-secondary" type="submit" value="Confirmar"  id="btn_registrar"/>
+                        </div>
                     {% endif %}
                 </form>
             </div>
