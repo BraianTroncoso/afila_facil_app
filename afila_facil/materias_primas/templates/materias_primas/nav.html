@@ -15,18 +15,18 @@
                 INGRESO
             </a>
             <div id="submenu1" class="submenu collapse">
-                <a class="dropdown-item" href="{% url 'nueva_materia' %}">NUEVA MATERIA</a>
-                <a class="dropdown-item" href="{% url 'nuevo_envasado' %}">NUEVO ENVASADO</a>
-                <a class="dropdown-item" href="{% url 'nuevo_proveedor' %}">NUEVO PROVEEDOR</a>
-                <a class="dropdown-item" href="{% url 'nueva_produccion' %}">NUEVA PRODUCCION</a>
+              <a class="dropdown-item" href="{% url 'nuevo_proveedor' %}">Nuevo proveedor</a>
+                <a class="dropdown-item" href="{% url 'nueva_materia' %}">Nueva materia</a>
+                <a class="dropdown-item" href="{% url 'nueva_produccion' %}">Nuevo sub-producto</a>
+                <a class="dropdown-item" href="{% url 'nuevo_envasado' %}">Nuevo envasado</a>
             </div>
             <a href="#submenu2" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
                 PRODUCCION
             </a>
             <div id="submenu2" class="submenu collapse">
-                <a class="dropdown-item" href="{% url 'produccion' %}">VER SUB PRODUCTO</a>
-                <a class="dropdown-item" href="{% url 'mostrar_envasado' %}">ENVASADO</a>
-                <a class="dropdown-item" href="#">PRODUCTO TERMINADO</a>
+                <a class="dropdown-item" href="{% url 'produccion' %}">Sub-Producto</a>
+                <a class="dropdown-item" href="{% url 'mostrar_envasado' %}">Envasado</a>
+                <a class="dropdown-item" href="#">Producto terminado</a>
             </div>
             <a href="{% url 'materias_primas' %}" class="list-group-item list-group-item-action">MATERIAS PRIMAS</a>
             <a href="{% url 'proveedores' %}" class="list-group-item list-group-item-action">PROVEEDORES</a>
