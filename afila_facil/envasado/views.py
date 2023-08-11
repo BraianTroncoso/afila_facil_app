@@ -66,4 +66,4 @@ def agregar_sub_producto(request, id):
     return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
 def editar_envasado(request):
-    return redirect('editar_envasado')
+    return render(request, 'editar_envasado.html')
