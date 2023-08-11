@@ -2,68 +2,40 @@
 
 {% block content %}
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#f5f5f5;">
-  <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img
-          src="{% static 'img/logo.jpeg' %}"
-          height="80"
-          alt="Logo Afila Facil"
-          loading="lazy"
-        />
-      </a>
-
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-
-        {% if user.is_staff %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            INGRESO
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'materias_primas' %}">MATERIAS PRIMAS</a>
-              <a class="dropdown-item" href="{% url 'proveedores' %}">PROVEEDORES</a>
-              <a class="dropdown-item" href="{% url 'nueva_materia' %}">NUEVA MATERIA</a>
-              <a class="dropdown-item" href="{% url 'nuevo_envasado' %}">NUEVO ENVASADO</a>
-              <a class="dropdown-item" href="{% url 'nuevo_proveedor' %}">NUEVO PROVEEDOR</a>
-              <a class="dropdown-item" href="{% url 'nueva_produccion' %}">NUEVA PRODUCCION</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            PRODUCCION
-          </a>
-          
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'produccion' %}">VER SUB PRODUCTO</a>
-              <a class="dropdown-item" href="{% url 'mostrar_envasado' %}">ENVASADO</a>
-              <a class="dropdown-item" href="#">PRODUCTO TERMINADO</a>
-          </div>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'clientes' %}">CLIENTES</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">ENVIOS</a>
-          </li>
-        {% endif %}
-
-      </ul>
+<div class="d-flex" id="wrapper">
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4">
+            <a href="#">
+                <img src="{% static 'img/logo.jpeg' %}" height="80" alt="Logo Afila Facil" loading="lazy" />
+            </a>
+        </div>
+        <div class="list-group list-group-flush">
+            {% if user.is_staff %}
+            <a href="#submenu1" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                INGRESO
+            </a>
+            <div id="submenu1" class="submenu collapse">
+                <a class="dropdown-item" href="{% url 'nueva_materia' %}">NUEVA MATERIA</a>
+                <a class="dropdown-item" href="{% url 'nuevo_envasado' %}">NUEVO ENVASADO</a>
+                <a class="dropdown-item" href="{% url 'nuevo_proveedor' %}">NUEVO PROVEEDOR</a>
+                <a class="dropdown-item" href="{% url 'nueva_produccion' %}">NUEVA PRODUCCION</a>
+            </div>
+            <a href="#submenu2" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                PRODUCCION
+            </a>
+            <div id="submenu2" class="submenu collapse">
+                <a class="dropdown-item" href="{% url 'produccion' %}">VER SUB PRODUCTO</a>
+                <a class="dropdown-item" href="{% url 'mostrar_envasado' %}">ENVASADO</a>
+                <a class="dropdown-item" href="#">PRODUCTO TERMINADO</a>
+            </div>
+            <a href="{% url 'materias_primas' %}" class="list-group-item list-group-item-action">MATERIAS PRIMAS</a>
+            <a href="{% url 'proveedores' %}" class="list-group-item list-group-item-action">PROVEEDORES</a>
+            <a href="{% url 'clientes' %}" class="list-group-item list-group-item-action">CLIENTES</a>
+            <a href="#" class="list-group-item list-group-item-action">ENVIOS</a>
+            
+            {% endif %}
+        </div>
     </div>
-    </div>
-  </div>
-</nav>
+</div>
+
 {% endblock %}
