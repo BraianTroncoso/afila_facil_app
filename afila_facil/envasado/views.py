@@ -41,18 +41,17 @@ def agregar_sub_producto(request, id):
             valor_produccion = 0
                 
             if produccion_seleccionada.produccion_cantidad >= nueva_cantidad:
-                if produccion_seleccionada.produccion_cantidad > 0:
-                    produccion_seleccionada.produccion_cantidad -= nueva_cantidad
-                    proporcion_descuento = (nueva_cantidad / produccion_seleccionada.produccion_cantidad)
-                    descuento_valor = produccion_seleccionada.produccion_total * proporcion_descuento
-                    produccion_seleccionada.produccion_total -= descuento_valor
+                descuento_valor = (nueva_cantidad / produccion_seleccionada.produccion_cantidad) * produccion_seleccionada.produccion_total
+                produccion_seleccionada.produccion_total -= descuento_valor
+                produccion_seleccionada.produccion_cantidad -= nueva_cantidad
                 produccion_seleccionada.save()
 
                 envasado.cantidad += nueva_cantidad
                 envasado.produccion = produccion_seleccionada
-                envasado.total += (descuento_valor * nuevo_valor)
+                envasado.total += (nuevo_valor * descuento_valor)  # Usar nuevo_valor en lugar de descuento_valor * nuevo_valor
                 envasado.save()
                 return redirect('mostrar_envasado')
+
                     # Cuando haga la vista de editar se le va a poder cambiar el valor del total, acá esta hardcodeada
 
             else:
