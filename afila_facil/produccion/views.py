@@ -151,7 +151,7 @@ def agregar_materias_produccion(request, id):
                 produccion.save()
                 return redirect('produccion')
             else:
-                messages.warning(request, "No hay suficiente stock disponible")
+                messages.warning(request, f"No hay suficiente stock, cantidad maxima de {minimo_cantidad_materias} materias primas")
         else:
             return render(request, 'agregar_materias_produccion.html', {'form': form, 'produccion': produccion})
     else:
