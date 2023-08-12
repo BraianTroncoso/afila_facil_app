@@ -3,9 +3,9 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center" >
             <h2 class="mb-3 mt-2">Nueva Proveedor</h2>
-            <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
+            <div class="d-flex justify-content-center mt-3 mb-5" style="background-color:  #1f262b;">
                 <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nuevo_proveedor' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
