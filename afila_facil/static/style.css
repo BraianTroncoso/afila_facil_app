@@ -1,3 +1,9 @@
+body {
+  font-family: 'Roboto' !important;
+  width: 100% !important;
+  height: 100vh !important;
+  margin: 0;
+}
 aside {
   color: #fff;
   width: 250px;
@@ -60,12 +66,6 @@ aside p {
   padding: 40px 0;
 }
 
-body {
-  font-family: 'Roboto' !important;
-  width: 100% !important;
-  height: 100vh !important;
-  margin: 0;
-}
 
 .social {
   height: 0;  
@@ -82,4 +82,10 @@ body {
   border-radius: 50%;
   top:5px;
   right:5px;
+}
+.custom-title {
+  font-family: 'Roboto', sans-serif; /* Cambia la fuente según tus preferencias */
+  font-size: 24px; /* Ajusta el tamaño de fuente según tu diseño */
+  color: #333; /* Cambia el color del título */ /* Agrega una sombra sutil al título */
+  margin: 10px 0; /* Ajusta el margen superior e inferior según tu diseño */
 }
