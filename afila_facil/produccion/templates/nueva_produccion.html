@@ -2,33 +2,27 @@
 {% load static %} 
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="d-flex flex-column align-items-center">
-            <h2 class="mb-3 mt-2">Nueva Produccion</h2>
-            <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
-                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nueva_produccion' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="form-outline w-100">
-                            <label class="form-label " for="nombre">Ingrese el nombre:</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" />
-                        </div>
-                    </div>
+  
+<div class="container-fluid" >
+    <div class="d-flex flex-column align-items-center" >
+   
+        <div class="d-flex justify-content-center mt-4 mb-5" style="background-color: #1f262b;">
+            <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'nueva_produccion' %}"enctype="multipart/form-data" >
+                {% csrf_token %}
+                 <h2 class="custom-title text-center">NUEVO SUB-PRODUCTO</h2>
+                <div class="form-outline mb-2" >
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" />
+                </div>
 
-                    {% if request.user.is_superuser %}
-                    
-                    <div class="row mb-4">
-                        <div class="form-outline">
-                            <input type="hidden" name="super" value="True" />
-                            <input class="boton_enviar btn btn-outline-secondary mt-3" type="submit" value="Confirmar" id="btn_registrar" />
-                        </div>
-                    </div>
+                {% if request.user.is_superuser %}
+                <input type="hidden" name="super" value="True" />
+                <input class="boton_enviar btn btn-outline-secondary mt-2" type="submit" value="Confirmar" id="btn_registrar" />
+                {% endif %}
 
-                    {% endif %}
-
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-
+</div>
 {% endblock %}
+
+
