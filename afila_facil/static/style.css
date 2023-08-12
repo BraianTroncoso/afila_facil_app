@@ -22,6 +22,42 @@ h5,
 h6 {
   font-family: "Nunito", sans-serif;
 }
+/* Light Backgrounds */
+.bg-primary-light {
+  background-color: #cfe2ff !important;
+  border-color: #cfe2ff !important;
+}
+
+.bg-secondary-light {
+  background-color: #e2e3e5 !important;
+  border-color: #e2e3e5 !important;
+}
+
+.bg-success-light {
+  background-color: #d1e7dd !important;
+  border-color: #d1e7dd !important;
+}
+
+.bg-danger-light {
+  background-color: #f8d7da !important;
+  border-color: #f8d7da !important;
+}
+
+.bg-warning-light {
+  background-color: #fff3cd !important;
+  border-color: #fff3cd !important;
+}
+
+.bg-info-light {
+  background-color: #cff4fc !important;
+  border-color: #cff4fc !important;
+}
+
+.bg-dark-light {
+  background-color: #d3d3d4 !important;
+  border-color: #d3d3d4 !important;
+}
+
 .sidebar {
     transition: all 0.3s;
     padding: 20px;
@@ -43,5 +79,3 @@ h6 {
     padding: 10px 15px;
     border-radius: 4px;
   }
-  
-  
