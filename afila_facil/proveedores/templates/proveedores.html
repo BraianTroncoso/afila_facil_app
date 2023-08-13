@@ -4,7 +4,7 @@
 
 {% if proveedores%}
 <div class="container">
-    <table class="table align-middle mb-0 bg-white m-3 mb-5">
+    <table class="table align-middle mb-0 bg-white m-3 mb-5" id="altura">
         <thead class="bg-light">
         <tr>
             <th>Nombre completo Proveedor</th>
@@ -21,7 +21,7 @@
         {% for proveedor in proveedores %}
             <tr>
                 <td>
-                <div class="d-flex align-items-center" id="altura">
+                <div class="d-flex align-items-center" >
                     <img
                         src="{{ proveedor.get_imagen_url }}"
                         alt="NO-IMG"
