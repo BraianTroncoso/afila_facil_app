@@ -15,7 +15,7 @@ class Materias(models.Model):
         if self.imagen:
             return f"/static/img/{self.imagen}"
         else:
-            return "/static/img/afilador.jpeg"
+            return "/static/img/materia_prima.png"
 
     class Meta:
         db_table = 'materias'
