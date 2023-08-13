@@ -14,7 +14,7 @@ class Proveedores(models.Model):
         if self.imagen:
             return f"/static/img/{self.imagen}"
         else:
-            return "/static/img/afilador.jpeg"
+            return "/static/img/proveedor.png"
 
     class Meta:
         db_table = 'proveedores'
