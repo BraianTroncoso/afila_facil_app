@@ -89,3 +89,8 @@ aside p {
   color: #333; /* Cambia el color del título */ /* Agrega una sombra sutil al título */
   margin: 10px 0; /* Ajusta el margen superior e inferior según tu diseño */
 }
+
+#altura{
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+}
