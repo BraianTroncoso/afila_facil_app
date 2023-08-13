@@ -2,36 +2,34 @@
 {% load static %} 
 
 {% block content %}
-    <div class="container-fluid ">
-        <div class="d-flex flex-column align-items-center">
-            <h2 class="mb-3 mt-2">Agregar Envasado</h2>
-            <div class="d-flex justify-content-center mt-3 mb-5" style="background-color: #c2e7e1;">
-                <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'agregar_sub_producto' envasado.id%}"  enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row mb-4">
-                        <div class="form-outline w-100">
-                            <label class="form-label" for="cantidad">Cantidad: </label>
-                            <input type="number" id="cantidad" name="cantidad" class="form-control" value="{{ envasado.cantidad }}"/>
-                        </div>
-                        <div class="form-outline w-100">
-                            <label class="form-label" for="nuevo_valor">Precio de venta: </label>
-                            <input type="number" id="nuevo_valor" name="nuevo_valor" class="form-control" value="{{ envasado.cantidad }}"/>
-                        </div>
+<div class="container-fluid" id="altura">
+    <div class="d-flex flex-column align-items-center" >
+   
+        <div class="d-flex justify-content-center mt-4 mb-5" style="background-color: #1f262b;">
+            <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'agregar_sub_producto' envasado.id%}" enctype="multipart/form-data" >
+                {% csrf_token %}
+                 <h2 class="custom-title text-center">AGREGAR ENVASADO</h2>
+        
+                    <div class="form-outline mb-2">
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Cantidad" value="{{ envasado.cantidad }}"/>
+                    </div>
+                    <div class="form-outline mb-2">
+                        <label class="form-label fw-bold mb-2" for="nuevo_valor">Precio de venta: </label>
+                        <input type="number" id="nuevo_valor" name="nuevo_valor" class="form-control" placeholder="Cantidad" value="{{ envasado.cantidad }}"/>
                     </div>
 
                     {% if request.user.is_superuser %}
-                        <div class="campos_forms">
-                            <div class="form-group">
-                                <label for="{{ form.produccion_seleccionada.id_for_label }}">{{ form.produccion_seleccionada.label }}</label>
-                                {{ form.produccion_seleccionada }}
-                            </div>
-                            <input type="hidden" name="super" value="True"/>
-                            <input class="boton_enviar btn btn-outline-secondary" type="submit" value="Confirmar"  id="btn_registrar"/>
-                        </div>
-                    {% endif %}
-                </form>
-            </div>
-            {% if messages %}
+                    <div class="form-outline w-100 d-flex flex-column">
+                        <label class="form-label fw-bold w-100" for="{{ form.materias_seleccionadas.id_for_label }}">{{ form.produccion_seleccionada.label }}</label>
+                        {{ form.produccion_seleccionada }}
+                    </div>
+                <input type="hidden" name="super" value="True" />
+                <input class="boton_enviar btn btn-outline-secondary mt-2" type="submit" value="Confirmar" id="btn_registrar" />
+                {% endif %}
+
+            </form>
+        </div>
+        {% if messages %}
                 {% for message in messages %}
                     <div class="alert {{ message.tags }} alert-dismissible fade show text-center w-25" role="alert">
                         {{ message }}
@@ -39,6 +37,6 @@
                     </div>
                 {% endfor %}
             {% endif %}
-        </div>
     </div>
+</div>
 {% endblock %}
