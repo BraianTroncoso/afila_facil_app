@@ -65,5 +65,29 @@ def agregar_sub_producto(request, id):
 
     return render(request, 'agregar_sub_producto.html', {'form': form, 'envasado': envasado})
 
-def editar_envasado(request):
+def editar_envasado(request, id):
+    envasado = get_object_or_404(Envasado, pk=id)
+
+    if request.method == 'POST':
+        form = MateriasForm(request.POST, request.FILES)
+        if form.is_valid():
+            materia.nombre = form.cleaned_data['nombre']
+            materia.precio = form.cleaned_data['precio']
+            materia.cantidad = form.cleaned_data['cantidad']
+            materia.proveedores = form.cleaned_data['proveedores']
+            materia.imagen = form.cleaned_data['imagen']
+            materia.save()
+            return redirect('materias_primas')
+    else:
+        form = MateriasForm(initial={
+            'nombre': materia.nombre,
+            'precio': materia.precio,
+            'cantidad': materia.cantidad,
+            'proveedores': materia.proveedores,
+            'imagen': materia.imagen
+        })
+
+    return render(request, 'editar_materia.html', {'form': form, 'materia': materia})
+
+
     return render(request, 'editar_envasado.html')
