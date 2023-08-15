@@ -69,25 +69,21 @@ def editar_envasado(request, id):
     envasado = get_object_or_404(Envasado, pk=id)
 
     if request.method == 'POST':
-        form = MateriasForm(request.POST, request.FILES)
+        form = EnvasadoForm(request.POST, request.FILES)
         if form.is_valid():
-            materia.nombre = form.cleaned_data['nombre']
-            materia.precio = form.cleaned_data['precio']
-            materia.cantidad = form.cleaned_data['cantidad']
-            materia.proveedores = form.cleaned_data['proveedores']
-            materia.imagen = form.cleaned_data['imagen']
-            materia.save()
-            return redirect('materias_primas')
+            envasado.nombre = form.cleaned_data['nombre']
+            envasado.nueva_cantidad = form.cleaned_data['cantidad']
+            envasado.nuevo_valor = form.cleaned_data['nuevo_valor']
+            produccion_id = form.cleaned_data['produccion_seleccionada']
+            produccion_seleccionada = Produccion.objects.get(id=produccion_id)
+            return redirect('mostrar_envasado')
     else:
         form = MateriasForm(initial={
-            'nombre': materia.nombre,
-            'precio': materia.precio,
-            'cantidad': materia.cantidad,
-            'proveedores': materia.proveedores,
-            'imagen': materia.imagen
+            'nombre': envasado.nombre,
+            'cantidad': envasado.cantidad,
+            'nuevo_valor': envasado.nuevo_valor,
+            'produccion_seleccionada': envasado.produccion_id
         })
 
-    return render(request, 'editar_materia.html', {'form': form, 'materia': materia})
+    return render(request, 'editar_envasado.html', {'form': form, 'materia': materia})
 
-
-    return render(request, 'editar_envasado.html')
