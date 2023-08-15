@@ -89,3 +89,4 @@ def editar_envasado(request, id):
 
 # Volver a ver la lógica, seguro hay un error con el tema del producto o editar, igual, tampoco puedo seguir sino se si tiene un precio
 # total o que.
+# Tambien ver el bug de cuando se selecciona un elemento a, este mismo supera los 100vh y rompe todo.
