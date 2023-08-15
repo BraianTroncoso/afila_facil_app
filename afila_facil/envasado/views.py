@@ -87,3 +87,5 @@ def editar_envasado(request, id):
 
     return render(request, 'editar_envasado.html', {'form': form, 'materia': materia})
 
+# Volver a ver la lógica, seguro hay un error con el tema del producto o editar, igual, tampoco puedo seguir sino se si tiene un precio
+# total o que.
