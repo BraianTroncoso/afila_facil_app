@@ -14,17 +14,9 @@
             <a href="{% url 'nuevo_proveedor' %}">Nuevo proveedor</a>
             <a href="{% url 'nueva_materia' %}">Nueva materia</a>
             <a href="{% url 'nueva_produccion' %}">Nuevo sub-producto</a>
-            <a href="{% url 'nuevo_envasado' %}">Nuevo envasado</a>
         </div>
-        <a href="#submenu2" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i>
-            Produccion
-        </a>
-        <div id="submenu2" class="submenu collapse">
-            <a href="{% url 'produccion' %}">Producto</a>
-            <!-- <a href="{% url 'mostrar_envasado' %}">Envasado</a> -->
-            <!-- <a href="#">Producto terminado</a> -->
-        </div>
-        <a href="{% url 'materias_primas' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Materias Primas</a>
+         <a href="{% url 'produccion' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Producto</a>
+        <a href="{% url 'materias_primas' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Materia Prima</a>
         <a href="{% url 'proveedores' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Proveedores</a>
         <a href="{% url 'clientes' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Clientes</a>
         <a href="#" ><i class="fa fa-laptop" aria-hidden="true"></i>Envios</a>
