@@ -15,11 +15,11 @@
             <a href="{% url 'nueva_materia' %}">Nueva materia</a>
             <a href="{% url 'nueva_produccion' %}">Nuevo sub-producto</a>
         </div>
-         <a href="{% url 'produccion' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Producto</a>
-        <a href="{% url 'materias_primas' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Materia Prima</a>
-        <a href="{% url 'proveedores' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Proveedores</a>
-        <a href="{% url 'clientes' %}"><i class="fa fa-laptop" aria-hidden="true"></i>Clientes</a>
-        <a href="#" ><i class="fa fa-laptop" aria-hidden="true"></i>Envios</a>
+         <a href="{% url 'produccion' %}" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i> Producto</a>
+        <a href="{% url 'materias_primas' %}" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i> Materia Prima</a>
+        <a href="{% url 'proveedores' %}" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i> Proveedores</a>
+        <a href="{% url 'clientes' %}" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i> Clientes</a>
+        <a href="#" data-bs-toggle="collapse"><i class="fa fa-laptop" aria-hidden="true"></i> Envios</a>
         {% endif %}
     </div>
      
