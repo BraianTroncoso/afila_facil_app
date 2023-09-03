@@ -43,7 +43,9 @@ def eliminar_produccion(request, id):
             produccion.save()
             messages.success(request, "Sub producto eliminado correctamente")
         else:
-            messages.error(request, "No es posible eliminar sino hay stock")
+            Produccion.objects.filter(pk=id).delete()
+            produccion = Produccion.objects.all()
+            messages.error(request, "Producto eliminado por completo")
     else:
         return redirect('produccion')
 
