@@ -24,6 +24,8 @@ def eliminar_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
 
     if request.method == 'POST':
+        if produccion.produccion_cantidad == 0 and produccion.produccion_total:
+            messages.error(request, "No hay productos disponibles")
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
             # Restamos una unidad de producción
             produccion.produccion_cantidad -= 1
