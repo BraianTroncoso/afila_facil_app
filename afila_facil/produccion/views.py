@@ -27,17 +27,13 @@ def eliminar_produccion(request, id):
         if produccion.produccion_cantidad == 0 and produccion.produccion_total:
             messages.error(request, "No hay productos disponibles")
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
-            # Restamos una unidad de producción
+           
             produccion.produccion_cantidad -= 1
-
-            # Obtenemos las materias específicas que se van a modificar
             materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
 
-            # Reducimos el total de producción en el precio de la materia
             produccion.produccion_total -= sum(
                 materia.precio for materia in materias)
 
-            # Actualizamos las cantidades de las materias sumándoles una unidad
             for materia in materias:
                 materia.cantidad += 1
                 materia.save()
