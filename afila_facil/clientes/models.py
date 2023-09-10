@@ -13,7 +13,7 @@ class Clientes(models.Model):
         if self.imagen:
             return f"/static/img/{self.imagen}"
         else:
-            return "/static/img/proveedor.png"
+            return "/static/img/cliente.png"
 
     class Meta:
         db_table = 'clientes'
