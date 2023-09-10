@@ -1,0 +1,46 @@
+{% extends "materias_primas/layout.html" %}
+{% load static %} 
+
+{% block content %}
+
+<div class="container-fluid" id="altura">
+  <div class="d-flex flex-column align-items-center" >
+ 
+      <div class="d-flex justify-content-center mt-4 mb-5" style="background-color: #1f262b;">
+          <form class="m-3 p-4 bg-body-secondary" method="post" action="{% url 'editar_cliente' cliente.id %}" enctype="multipart/form-data" >
+              {% csrf_token %}
+               <h2 class="custom-title text-center">EDITAR PROVEEDOR</h2>
+              <div class="form-outline mb-2" >
+                  <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre completo" value="{{ proveedor.nombre }}" />
+              </div>
+                  <div class="form-outline mb-2">
+                    <textarea id="detalle" name="detalle" class="form-control" placeholder="Detalles" >{{ proveedor.detalle }}</textarea>
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion" value="{{ proveedor.direccion }}"/>
+                  </div>
+
+                <div class="form-outline mb-2">
+                  <input type="number" id="telefono" name="telefono" class="form-control" placeholder="Telefono" value="{{ proveedor.telefono }}"/>
+                </div>
+            <div class="form-outline mb-2">
+                <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="{{ proveedor.email }}"/>
+            </div>
+                  <div class="row mb-4">
+                      <div class="form-outline">
+                        <label class="form-label fw-bold w-100" for="imagen">Seleccione una imagen:</label>
+                            <input type="file" id="imagen" name="imagen" class="form-control" value="{{ proveedor.imagen }}"/>
+                      </div>
+                  </div>
+              {% if request.user.is_superuser %}
+              <input type="hidden" name="super" value="True" />
+              <input class="boton_enviar btn btn-outline-secondary mt-2" type="submit" value="Confirmar" id="btn_registrar" />
+              {% endif %}
+
+          </form>
+      </div>
+
+  </div>
+</div>
+{% endblock %}
