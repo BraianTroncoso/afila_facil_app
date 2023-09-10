@@ -66,5 +66,3 @@ def editar_materia(request, id):
 
 
 
-def clientes(request):
-    return render(request,'clientes.html')

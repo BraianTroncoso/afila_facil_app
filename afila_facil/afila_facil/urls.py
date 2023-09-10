@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include('usuarios.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
     path('proveedores/', include('proveedores.urls')),
+    path('clientes', include('clientes.py'))
     # path('envasados/', include('envasado.urls'))
 ]
 
