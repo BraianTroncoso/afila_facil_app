@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'materias_primas',
     'produccion',
     'usuarios',
-    'proveedores',
-    'envasado'
+    'proveedores'
 ]
 
 MIDDLEWARE = [

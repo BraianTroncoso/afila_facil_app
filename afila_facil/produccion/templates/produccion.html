@@ -57,6 +57,7 @@
 
                 <form action="{% url 'eliminar_produccion' id=produccion.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
+                    <input type="hidden" name="ids_seleccionados" value="{{ ids_seleccionados|join:',' }}">
                     <button type="submit" class="btn btn-sm btn-rounded btn-danger">Eliminar</button>
                 </form>
                 <form action="{% url 'agregar_materias_produccion' id=produccion.id %}" method="post" style="display: inline;">

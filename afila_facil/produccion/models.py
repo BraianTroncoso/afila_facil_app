@@ -3,7 +3,7 @@ from materias_primas.models import Materias
 
 class Produccion(models.Model):
     producto_completo = models.BooleanField(default=False)
-    materias = models.ForeignKey(Materias, on_delete=models.CASCADE, related_name='produccion', null=True)
+    materias = models.ForeignKey(Materias, on_delete=models.CASCADE, related_name='produccion', null=True, blank=True)
     produccion_cantidad = models.IntegerField(default=0)
     produccion_total = models.IntegerField(default=0)
     nombre = models.CharField(max_length=100, default='')

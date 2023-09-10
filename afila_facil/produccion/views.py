@@ -3,6 +3,7 @@ from .models import Produccion
 from materias_primas.models import Materias
 from django.contrib import messages
 from .forms import ProduccionForm, ProduccionCantidadForm
+from django.http import Http404
 
 
 def nueva_produccion(request):
@@ -22,22 +23,28 @@ def mostrar_produccion(request):
 
 def eliminar_produccion(request, id):
     produccion = get_object_or_404(Produccion, pk=id)
+    ids = []  # Inicializa ids como una lista vacía
 
     if request.method == 'POST':
+        ids_seleccionados = request.POST.get('ids_seleccionados')
         if produccion.produccion_cantidad == 0 and produccion.produccion_total:
             messages.error(request, "No hay productos disponibles")
         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
             produccion.produccion_cantidad -= 1
 
             # Obtenemos las materias específicas que se van a modificar
-            # materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
-            materias = Materias.objects.all()
+            if ids_seleccionados:
+                # Haz algo con los IDs aquí
+                ids = [int(id) for id in ids_seleccionados.split(',')]
+                print(ids)
+            
             # Reducimos el total de producción en el precio de la materia
             produccion.produccion_total -= sum(
-                materia.precio for materia in materias)
+                materia.precio for materia in ids)
 
             # Actualizamos las cantidades de las materias sumándoles una unidad
-            for materia in materias:
+            for materia_id in ids:
+                materia = Materias.objects.get(pk=materia_id)
                 materia.cantidad += 1
                 materia.save()
 
@@ -51,6 +58,46 @@ def eliminar_produccion(request, id):
         return redirect('produccion')
 
     return redirect('produccion')
+
+
+# def eliminar_produccion(request, id):
+#     produccion = get_object_or_404(Produccion, pk=id)
+
+#     if request.method == 'POST':
+#         ids_seleccionados = request.POST.get('ids_seleccionados')
+#         if produccion.produccion_cantidad == 0 and produccion.produccion_total:
+#             messages.error(request, "No hay productos disponibles")
+#         if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
+#             produccion.produccion_cantidad -= 1
+
+            
+#             # Obtenemos las materias específicas que se van a modificar
+#             # Cuando obtuvimos por ID era para cuando se elimina 1 de producto y este vuelve 1+ a todos
+#             # materias = Materias.objects.filter(id__in=[1, 2, 3, 4, 5, 6])
+#             if ids_seleccionados:
+#             # Haz algo con los IDs aquí
+#                 ids = [int(id) for id in ids_seleccionados.split(',')]
+#                 print(ids)
+#             # Reducimos el total de producción en el precio de la materia
+
+#             produccion.produccion_total -= sum(
+#                 materia.precio for materia in ids)
+
+#             # Actualizamos las cantidades de las materias sumándoles una unidad
+#             for materia in ids:
+#                 materia.cantidad += 1
+#                 materia.save()
+
+#             produccion.save()
+#             messages.success(request, "Sub producto eliminado correctamente")
+#         else:
+#             Produccion.objects.filter(pk=id).delete()
+#             produccion = Produccion.objects.all()
+#             messages.error(request, "Producto eliminado por completo")
+#     else:
+#         return redirect('produccion')
+
+#     return redirect('produccion')
 
 
 def editar_produccion(request, id):
@@ -137,6 +184,10 @@ def agregar_materias_produccion(request, id):
 
             materias_seleccionadas = Materias.objects.filter(id__in=ids_seleccionados)
             minimo_cantidad_materias = min(materia.cantidad for materia in materias_seleccionadas)
+
+            # if materias_seleccionadas:
+            #     produccion.materias.set(materias_seleccionadas)
+            #     produccion.save()
 
             if nueva_cantidad <= minimo_cantidad_materias:
                 for materia in materias_seleccionadas:
