@@ -4,7 +4,8 @@ from .forms import ClientesForm
 
 # Create your views here.
 def clientes(request):
-    return render(request,'clientes.html')
+    clientes = Clientes.objects.all()
+    return render(request,'clientes.html',{'clientes': clientes, 'mensaje': "No hay Clientes"})
 
 
 def nuevo_cliente(request):
