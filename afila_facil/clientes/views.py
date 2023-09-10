@@ -54,3 +54,9 @@ def editar_cliente(request,id):
         })
     
     return render(request, 'editar_cliente.html', {'form': form, 'cliente': cliente})
+
+
+def eliminar_cliente(request,id):
+    Clientes.objects.filter(pk=id).delete()
+    clientes = Clientes.objects.all()
+    return render(request,'clientes.html',{'clientes': clientes, 'mensaje': "No hay Clientes"})

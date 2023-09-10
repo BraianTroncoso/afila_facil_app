@@ -49,7 +49,7 @@
                         <button type="submit" class="btn btn-info btn-sm btn-rounded" style="width: 70px;">Editar</button>
                     </form>
 
-                    <form action="#"  method="post" style="display: inline;">
+                    <form action="{% url 'eliminar_cliente' id=cliente.id %}"  method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-rounded btn-danger" style="width: 70px;">Eliminar</button>
                     </form>
