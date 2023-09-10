@@ -27,3 +27,30 @@ def nuevo_cliente(request):
         else:
             form = ClientesForm()    
     return render(request, 'nuevo_cliente.html')
+
+
+
+def editar_cliente(request,id):
+    cliente = get_object_or_404(Clientes, pk=id)
+    if request.method == 'POST':
+        form = ClientesForm(request.POST, request.FILES)
+        if form.is_valid():
+            cliente.nombre = form.cleaned_data['nombre']
+            cliente.detalle = form.cleaned_data['detalle']
+            cliente.direccion = form.cleaned_data['direccion']
+            cliente.telefono = form.cleaned_data['telefono']
+            cliente.email = form.cleaned_data['email']
+            cliente.imagen = form.cleaned_data['imagen']
+            cliente.save()
+            return redirect('clientes')
+    else:
+        form = ClientesForm(initial={
+        'nombre': cliente.nombre,
+        'detalle': cliente.detalle,
+        'direccion': cliente.direccion,
+        'telefono':  cliente.telefono,
+        'email': cliente.email,
+        'imagen': cliente.imagen
+        })
+    
+    return render(request, 'editar_cliente.html', {'form': form, 'cliente': cliente})
