@@ -46,12 +46,12 @@
 
                     <form action="{% url 'editar_proveedor' id=proveedor.id %}" method="post" style="display: inline;" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-info btn-sm btn-rounded" style="width: 80px;">Editar</button>
+                        <button type="submit" class="btn btn-info btn-sm btn-rounded" style="width: 70px;">Editar</button>
                     </form>
 
                     <form action="{% url 'eliminar_proveedor' id=proveedor.id %}"  method="post" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-rounded btn-danger" style="width: 80px;">Eliminar</button>
+                        <button type="submit" class="btn btn-sm btn-rounded btn-danger" style="width: 70px;">Eliminar</button>
                     </form>
                     
                 </td>                
