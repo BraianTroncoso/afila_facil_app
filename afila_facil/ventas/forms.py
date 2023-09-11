@@ -8,12 +8,11 @@ class VentasForm(forms.Form):
    detalle = forms.CharField(
         max_length=200,
         required=False,
-        widget=forms.Textarea(attrs={'class': 'form-control'})
+        widget=forms.Textarea()
     )
    cantidad = forms.IntegerField()
    costo = forms.IntegerField()
    total = forms.IntegerField()
-   imagen = forms.CharField(max_length=100, required=False)
 
    class Meta:
             model = Clientes

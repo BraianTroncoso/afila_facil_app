@@ -35,11 +35,6 @@
                         {{ form.produccion }}
                     </div>
 
-                <div class="form-outline mb-2">
-                    <label class="form-label fw-bold" for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" class="form-control" />
-                </div>
-
                 {% if request.user.is_superuser %}
                 <input type="hidden" name="super" value="True" />
                 <input class="boton_enviar btn btn-outline-secondary mt-2" type="submit" value="Confirmar" id="btn_registrar" />

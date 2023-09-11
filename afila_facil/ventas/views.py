@@ -10,22 +10,19 @@ def mostrar_ventas(request):
 
 
 def nueva_venta(request):
-    if request.method == 'POST':
-        form = VentasForm(request.POST, request.FILES)
-        if form.is_valid():
-            clientes = form.cleaned_data['clientes']
-            produccion = form.cleaned_data['produccion']
-            detalle = form.cleaned_data['detalle']
-            imagen = form.cleaned_data['imagen']
-            cantidad = form.cleaned_data['cantidad']
-            costo = form.cleaned_data['costo']
-            total = form.cleaned_data['total']
+    form = VentasForm(request.POST, request.FILES)
+    
+    if request.method == 'POST' and form.is_valid():
+        clientes = form.cleaned_data['clientes']
+        produccion = form.cleaned_data['produccion']
+        detalle = form.cleaned_data['detalle']
+        cantidad = form.cleaned_data['cantidad']
+        costo = form.cleaned_data['costo']
+        total = form.cleaned_data['total']
 
-            ventas = Ventas(clientes=clientes, produccion=produccion,
-                                  detalle=detalle, cantidad=cantidad, costo=costo, total=total,
-                                  imagen=imagen)
-            ventas.save()
-            return redirect('ventas')
-        else:
-            form = VentasForm()    
-    return render(request, 'nueva_venta.html')
+        ventas = Ventas(clientes=clientes, produccion=produccion,
+                          detalle=detalle, cantidad=cantidad, costo=costo, total=total)
+        ventas.save()
+        return redirect('ventas')
+
+    return render(request, 'nueva_venta.html', {'form': form})
