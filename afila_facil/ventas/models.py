@@ -10,3 +10,10 @@ class Ventas(models.Model):
     clientes = models.ForeignKey(Clientes, on_delete=models.CASCADE)
     costo = models.IntegerField(default=0)
     total = models.IntegerField(default=0)
+    imagen = models.TextField(null=True, blank=True)
+
+    def get_imagen_url(self):
+        if self.imagen:
+            return f"/static/img/{self.imagen}"
+        else:
+            return "/static/img/venta.png"
