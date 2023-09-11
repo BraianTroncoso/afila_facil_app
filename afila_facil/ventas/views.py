@@ -21,7 +21,7 @@ def nueva_venta(request):
             total = form.cleaned_data['total']
 
             ventas = Ventas(clientes=clientes, produccion=produccion,
-                                  direccion=direccion, telefono=telefono, email=email,
+                                  detalle=detalle, cantidad=cantidad, costo=costo,
                                   imagen=imagen)
             proveedores.save()
             return redirect('proveedores')
