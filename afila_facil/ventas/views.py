@@ -26,3 +26,9 @@ def nueva_venta(request):
         return redirect('ventas')
 
     return render(request, 'nueva_venta.html', {'form': form})
+
+# Bugs en Producion tanto como para eliminar y editar
+# No retorna las materias eliminadas
+# Pensar lógica de venta y queda solo imprimir
+# Tambien pasar a docker o con el modulo pyexe convertirlo en .exe para windows
+# Entragar producto. ( Teastear antes )

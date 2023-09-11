@@ -24,6 +24,12 @@ def mostrar_produccion(request):
 def eliminar_produccion(request, id):
     Produccion.objects.filter(pk=id).delete()
     produccion = Produccion.objects.all()
+    materias = Materias.objects.all()
+
+    for materia in materias:
+            materia.cantidad += 1
+            materia.save()
+            
     return render(request,'produccion.html',{'produccion': produccion}, messages.error(request, "Producto eliminado"))
 
     # produccion = get_object_or_404(Produccion, pk=id)
