@@ -23,8 +23,8 @@ def nueva_venta(request):
             ventas = Ventas(clientes=clientes, produccion=produccion,
                                   detalle=detalle, cantidad=cantidad, costo=costo,
                                   imagen=imagen)
-            proveedores.save()
-            return redirect('proveedores')
+            ventas.save()
+            return redirect('ventas')
         else:
-            form = ProveedoresForm()    
-    return render(request, 'nuevo_proveedor.html')
+            form = VentasForm()    
+    return render(request, 'nueva_venta.html')
