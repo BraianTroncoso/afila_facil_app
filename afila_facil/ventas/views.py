@@ -20,7 +20,7 @@ def nueva_venta(request):
             costo = form.cleaned_data['costo']
             total = form.cleaned_data['total']
 
-            ventas = Ventas(nombre=nombre, detalle=detalle,
+            ventas = Ventas(clientes=clientes, produccion=produccion,
                                   direccion=direccion, telefono=telefono, email=email,
                                   imagen=imagen)
             proveedores.save()
