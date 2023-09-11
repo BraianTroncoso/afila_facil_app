@@ -8,3 +8,23 @@ def mostrar_ventas(request):
     ventas = Ventas.objects.all()
     return render(request,'ventas.html',{'ventas': ventas, 'mensaje': "No hay Ventas"})
 
+
+def nueva_venta(request):
+    if request.method == 'POST':
+        form = VentasForm(request.POST, request.FILES)
+        if form.is_valid():
+            clientes = form.cleaned_data['clientes']
+            produccion = form.cleaned_data['produccion']
+            detalle = form.cleaned_data['detalle']
+            cantidad = form.cleaned_data['cantidad']
+            costo = form.cleaned_data['costo']
+            total = form.cleaned_data['total']
+
+            proveedores = Proveedores(nombre=nombre, detalle=detalle,
+                                  direccion=direccion, telefono=telefono, email=email,
+                                  imagen=imagen)
+            proveedores.save()
+            return redirect('proveedores')
+        else:
+            form = ProveedoresForm()    
+    return render(request, 'nuevo_proveedor.html')
