@@ -6,7 +6,7 @@ from .forms import VentasForm
 
 def mostrar_ventas(request):
     ventas = Ventas.objects.all()
-    return render(request,'ventas.html',{'ventas': ventas, 'mensaje': "No hay Ventas"})
+    return render(request,'ventas.html',{'ventas': ventas})
 
 
 def nueva_venta(request):
