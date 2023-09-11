@@ -62,7 +62,16 @@
         
     </table>
 {%else%}
-    {{ mensaje }}
+    <h5 class="fw-normal mb-1" style="color:red">NO HAY PROVEEDORES DISPONIBLES</h5>
 {%endif%}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible fade show text-center w-25 mx-auto" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+{% endfor %}
+{% endif %}
 </div>
 {% endblock %}

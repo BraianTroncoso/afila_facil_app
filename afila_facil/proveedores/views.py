@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Proveedores
 from .forms import ProveedoresForm
+from django.contrib import messages
+from django.http import Http404
+
 # Create your views here.
 def nuevo_proveedor(request):
     if request.method == 'POST':
@@ -31,7 +34,7 @@ def mostrar_proveedores(request):
 def eliminar_proveedor(request,id):
     Proveedores.objects.filter(pk=id).delete()
     proveedores = Proveedores.objects.all()
-    return render(request,'proveedores.html',{'proveedores': proveedores, 'mensaje': "No hay Proveedores"})
+    return render(request,'proveedores.html',{'proveedores': proveedores}, messages.error(request, "Proveedor eliminado"))
 
 
 def editar_proveedor(request,id):

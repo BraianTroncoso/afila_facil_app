@@ -22,42 +22,46 @@ def mostrar_produccion(request):
 
 
 def eliminar_produccion(request, id):
-    produccion = get_object_or_404(Produccion, pk=id)
-    ids = []  # Inicializa ids como una lista vacía
+    Produccion.objects.filter(pk=id).delete()
+    produccion = Produccion.objects.all()
+    return render(request,'produccion.html',{'produccion': produccion}, messages.error(request, "Producto eliminado"))
 
-    if request.method == 'POST':
-        ids_seleccionados = request.POST.get('ids_seleccionados')
-        if produccion.produccion_cantidad == 0 and produccion.produccion_total:
-            messages.error(request, "No hay productos disponibles")
-        if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
-            produccion.produccion_cantidad -= 1
+    # produccion = get_object_or_404(Produccion, pk=id)
+    # ids = []  # Inicializa ids como una lista vacía
 
-            # Obtenemos las materias específicas que se van a modificar
-            if ids_seleccionados:
-                # Haz algo con los IDs aquí
-                ids = [int(id) for id in ids_seleccionados.split(',')]
-                print(ids)
+    # if request.method == 'POST':
+    #     ids_seleccionados = request.POST.get('ids_seleccionados')
+    #     if produccion.produccion_cantidad == 0 and produccion.produccion_total:
+    #         messages.error(request, "No hay productos disponibles")
+    #     if produccion.produccion_cantidad > 0 and produccion.produccion_total > 0:
+    #         produccion.produccion_cantidad -= 1
+
+    #         # Obtenemos las materias específicas que se van a modificar
+    #         if ids_seleccionados:
+    #             # Haz algo con los IDs aquí
+    #             ids = [int(id) for id in ids_seleccionados.split(',')]
+    #             print(ids)
             
-            # Reducimos el total de producción en el precio de la materia
-            produccion.produccion_total -= sum(
-                materia.precio for materia in ids)
+    #         # Reducimos el total de producción en el precio de la materia
+    #         produccion.produccion_total -= sum(
+    #             materia.precio for materia in ids)
 
-            # Actualizamos las cantidades de las materias sumándoles una unidad
-            for materia_id in ids:
-                materia = Materias.objects.get(pk=materia_id)
-                materia.cantidad += 1
-                materia.save()
+    #         # Actualizamos las cantidades de las materias sumándoles una unidad
+    #         for materia_id in ids:
+    #             materia = Materias.objects.get(pk=materia_id)
+    #             materia.cantidad += 1
+    #             materia.save()
 
-            produccion.save()
-            messages.success(request, "Sub producto eliminado correctamente")
-        else:
-            Produccion.objects.filter(pk=id).delete()
-            produccion = Produccion.objects.all()
-            messages.error(request, "Producto eliminado por completo")
-    else:
-        return redirect('produccion')
+    #         produccion.save()
+    #         messages.success(request, "Sub producto eliminado correctamente")
+    #     else:
+    #         Produccion.objects.filter(pk=id).delete()
+    #         produccion = Produccion.objects.all()
+    #         messages.error(request, "Producto eliminado por completo")
+    # else:
+    #     return redirect('produccion')
 
-    return redirect('produccion')
+    # return redirect('produccion')
 
 
 # def eliminar_produccion(request, id):
