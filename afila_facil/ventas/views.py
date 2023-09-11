@@ -16,6 +16,7 @@ def nueva_venta(request):
             clientes = form.cleaned_data['clientes']
             produccion = form.cleaned_data['produccion']
             detalle = form.cleaned_data['detalle']
+            imagen = form.cleaned_data['imagen']
             cantidad = form.cleaned_data['cantidad']
             costo = form.cleaned_data['costo']
             total = form.cleaned_data['total']
