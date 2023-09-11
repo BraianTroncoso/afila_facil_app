@@ -11,12 +11,18 @@
                 {% csrf_token %}
                  <h2 class="custom-title text-center">NUEVA VENTA</h2>
                 <div class="form-outline mb-2" >
-                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" />
+                    <input type="text" id="detalle" name="detalle" class="form-control" placeholder="Detalles" />
                 </div>
                 
               
                     <div class="form-outline mb-2">
-                        <input type="number" id="precio" name="precio" class="form-control" placeholder="Precio ($)"/>
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Cantidad"/>
+                    </div>
+                    <div class="form-outline mb-2">
+                        <input type="number" id="costo" name="costo" class="form-control" placeholder="Costo"/>
+                    </div>
+                    <div class="form-outline mb-2">
+                        <input type="number" id="total" name="total" class="form-control" placeholder="Total"/>
                     </div>
             
 
