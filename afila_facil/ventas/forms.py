@@ -3,10 +3,17 @@ from produccion.models import Produccion
 from clientes.models import Clientes
 
 class VentasForm(forms.Form):
-   nombre = forms.CharField(max_length=100)
    clientes = forms.ModelChoiceField(queryset=Clientes.objects.all())
    produccion = forms.ModelChoiceField(queryset=Produccion.objects.all())
-   precio = forms.IntegerField()
+   detalle = forms.CharField(
+        max_length=200,
+        required=False,
+        widget=forms.Textarea(attrs={'class': 'form-control'})
+    )
    cantidad = forms.IntegerField()
+   costo = forms.IntegerField()
+   total = forms.IntegerField()
    imagen = forms.CharField(max_length=100, required=False)
 
+   class Meta:
+            model = Clientes
