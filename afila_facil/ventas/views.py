@@ -28,4 +28,4 @@ def nueva_venta(request):
             return redirect('ventas')
         else:
             form = VentasForm()    
-    return render(request, 'nueva_venta.html', {'form': form})
+    return render(request, 'nueva_venta.html')
