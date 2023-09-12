@@ -29,6 +29,7 @@ def nueva_venta(request):
 
 # Bugs en Producion tanto como para eliminar y editar
 # No retorna las materias eliminadas
+# Ver como puedo imprimir o mandarlo al mail directamente
 # Pensar lógica de venta y queda solo imprimir
 # Tambien pasar a docker o con el modulo pyexe convertirlo en .exe para windows
 # Entragar producto. ( Teastear antes )
