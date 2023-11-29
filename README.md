@@ -5,7 +5,7 @@
 
 ## Descripción:
 
-Proyecto para una pyme que necesita solucionar el problema de control de stock, producción, clientes, ventas y materias primas.
+Proyecto para una PYME que necesita solucionar el problema de control de stock, producción, clientes, ventas y materias primas.
 
 ## DEV
 
